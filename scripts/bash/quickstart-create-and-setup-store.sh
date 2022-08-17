@@ -57,21 +57,20 @@ echo ""
 
 echo_attention "Pushing store sources..."
 set -x
-# This command was supposed to run in an scratch org
-sfdx force:source:push -f
+# # This command was supposed to run in an scratch org
+# sfdx force:source:push -f
 
-# # But we need it in an sandbox or productive org
-# # The command bellow are used to sandboxes
-# echo "Doing the first deployment"
-# rm -rf Deploy
-# sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-StorefrontFirstDeployment.xml
-# # These test classes will be added as soon as possible
-# # sfdx force:mdapi:deploy -d ..\..\Deploy/ -w 10 -l RunSpecifiedTests -r B2BAuthorizeTokenizedPaymentTest,B2BCheckInventorySampleTest,B2BDeliverySampleTest,B2BPaymentControllerTest,B2BPricingSampleTest,B2BSyncCheckInventoryTest,B2BSyncDeliveryTest,B2BSyncPricingTest,B2BSyncTaxTest,B2BTaxSampleTest,QuickStartIntegrationTest
-# # But for now, we'll just deploy it
-# sfdx force:mdapi:deploy -d Deploy/ -w 10 
+# But we need it in an sandbox or productive orgs
+echo "Doing the first deployment"
+rm -rf Deploy
+sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-StorefrontFirstDeployment.xml
+# These test classes will be added as soon as possible
+# sfdx force:mdapi:deploy -d ..\..\Deploy/ -w 10 -l RunSpecifiedTests -r B2BAuthorizeTokenizedPaymentTest,B2BCheckInventorySampleTest,B2BDeliverySampleTest,B2BPaymentControllerTest,B2BPricingSampleTest,B2BSyncCheckInventoryTest,B2BSyncDeliveryTest,B2BSyncPricingTest,B2BSyncTaxTest,B2BTaxSampleTest,QuickStartIntegrationTest
+# But for now, we'll just deploy it
+sfdx force:mdapi:deploy -d Deploy/ -w 10 
 
 # # Clean the path after runnin
-# rm -rf Deploy
+rm -rf Deploy
 
 set +x
 

@@ -16,11 +16,13 @@
 	</types>
 	<types>
 		<members>Account</members>
+		<members>Case</members>
 		<members>BuyerGroup</members>
 		<members>BuyerGroupPricebook</members>
 		<!-- members>CommerceDiagnosticCustomObject__c</members -->
 		<members>CommerceEntitlementPolicy</members>
 		<!-- members>GuestBuyerProfile</members -->
+		<members>Opportunity</members>
 		<members>Order</members>
 		<members>OrderDeliveryMethod</members>
 		<members>OrderSummary</members>

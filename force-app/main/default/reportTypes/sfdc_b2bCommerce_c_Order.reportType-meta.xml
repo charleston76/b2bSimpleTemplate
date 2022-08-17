@@ -236,56 +236,6 @@
             <field>LastModifiedBy</field>
             <table>Order</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SBQQ__Contracted__c</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SBQQ__ContractingMethod__c</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SBQQ__PaymentTerm__c</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SBQQ__PriceCalcStatusMessage__c</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SBQQ__PriceCalcStatus__c</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SBQQ__Quote__c</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SBQQ__RenewalTerm__c</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SBQQ__RenewalUpliftRate__c</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SBQQ__OrderBookings__c</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SBQQ__TaxAmount__c</field>
-            <table>Order</table>
-        </columns>
         <masterLabel>Orders</masterLabel>
     </sections>
 </ReportType>

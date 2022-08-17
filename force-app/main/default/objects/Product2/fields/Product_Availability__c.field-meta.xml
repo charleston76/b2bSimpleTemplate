@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Availability__c</fullName>
+    <externalId>false</externalId>
+    <label>Product Availability</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Active/In Stock</fullName>
+                <default>false</default>
+                <label>Active/In Stock</label>
+            </value>
+            <value>
+                <fullName>Going Out of Print</fullName>
+                <default>false</default>
+                <label>Going Out of Print</label>
+            </value>
+            <value>
+                <fullName>Not yet available</fullName>
+                <default>false</default>
+                <label>Not yet available</label>
+            </value>
+            <value>
+                <fullName>Out of Print/Discontinued</fullName>
+                <default>false</default>
+                <label>Out of Print/Discontinued</label>
+            </value>
+            <value>
+                <fullName>Out of stock</fullName>
+                <default>false</default>
+                <label>Out of stock</label>
+            </value>
+            <value>
+                <fullName>Relicensing Under Consideration</fullName>
+                <default>false</default>
+                <label>Relicensing Under Consideration</label>
+            </value>
+            <value>
+                <fullName>Replaced By New Edition</fullName>
+                <default>false</default>
+                <label>Replaced By New Edition</label>
+            </value>
+            <value>
+                <fullName>Reprinting</fullName>
+                <default>false</default>
+                <label>Reprinting</label>
+            </value>
+            <value>
+                <fullName>Special Order</fullName>
+                <default>false</default>
+                <label>Special Order</label>
+            </value>
+            <value>
+                <fullName>Under Contract Sell Off Period</fullName>
+                <default>false</default>
+                <label>Under Contract Sell Off Period</label>
+            </value>
+            <value>
+                <fullName>Web Based Product</fullName>
+                <default>false</default>
+                <label>Web Based Product</label>
+            </value>
+            <value>
+                <fullName>Withdrawn from sale</fullName>
+                <default>false</default>
+                <label>Withdrawn from sale</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

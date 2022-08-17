@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>*</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>Images</members>
+		<members>imagelocation1</members>
+		<name>CspTrustedSite</name>
+	</types>
+	<types>
+		<members>standard__Commerce</members>
+		<members>standard__SalesforceCMS</members>
+		<name>CustomApplication</name>
+	</types>
+	<types>
+		<members>Account</members>
+		<members>BuyerGroup</members>
+		<members>BuyerGroupPricebook</members>
+		<!-- members>CommerceDiagnosticCustomObject__c</members -->
+		<members>CommerceEntitlementPolicy</members>
+		<!-- members>GuestBuyerProfile</members -->
+		<members>Order</members>
+		<members>OrderDeliveryMethod</members>
+		<members>OrderSummary</members>
+		<members>Pricebook2</members>
+		<members>Product2</members>
+		<members>ProductCatalog</members>
+		<members>ProductCategory</members>
+		<members>WebStore</members>
+		<members>WebStorePricebook</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>Account_Record_Page1</members>
+		<name>FlexiPage</name>
+	</types>
+	<!-- types>
+		<members>*</members>
+		<name>Flow</name>
+	</types -->
+	<!-- types>
+		<members>Account-Admin - View All Layout</members>
+		<members>Contact-ALL</members>
+		<members>Order-Order Layout</members>
+		<members>OrderSummary-Order Summary Layout</members>
+		<members>Product2-Product Layout</members>
+		<name>Layout</name>
+	</types -->
+	<types>
+		<members>*</members>
+		<name>LightningComponentBundle</name>
+	</types>
+	<types>
+		<members>OrderSummary.My_order_Summaries</members>
+		<name>ListView</name>
+	</types>
+	<types>
+		<members>Account_Switcher_User</members>
+		<name>PermissionSet</name>
+	</types>
+	<types>
+		<members>Admin</members>
+		<members>Commerce Business User Profile</members>
+		<name>Profile</name>
+	</types>
+	<types>
+		<members>Account.Business_Account</members>
+		<name>RecordType</name>
+	</types>
+	<types>
+		<members>herokuapp</members>
+		<name>RemoteSiteSetting</name>
+	</types>
+	<types>
+		<members>sfdc_b2bCommerce_f_Order</members>
+		<members>sfdc_b2bCommerce_f_Order/sfdc_b2bCommerce_r_AvgOrderValue</members>
+		<members>sfdc_b2bCommerce_f_Order/sfdc_b2bCommerce_r_OrdersByDate</members>
+		<members>sfdc_b2bCommerce_f_Order/sfdc_b2bCommerce_r_TotalNumOrders</members>
+		<name>Report</name>
+	</types>
+	<types>
+		<members>sfdc_b2bCommerce_c_Order</members>
+		<name>ReportType</name>
+	</types>
+	<version>54.0</version>
+</Package>

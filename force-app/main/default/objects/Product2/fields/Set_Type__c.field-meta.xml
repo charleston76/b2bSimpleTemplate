@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Set_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Set Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>6 Pack</fullName>
+                <default>false</default>
+                <label>6 Pack</label>
+            </value>
+            <value>
+                <fullName>Add On Set</fullName>
+                <default>false</default>
+                <label>Add On Set</label>
+            </value>
+            <value>
+                <fullName>Bindup</fullName>
+                <default>false</default>
+                <label>Bindup</label>
+            </value>
+            <value>
+                <fullName>Classroom Collection</fullName>
+                <default>false</default>
+                <label>Classroom Collection</label>
+            </value>
+            <value>
+                <fullName>Classroom Library</fullName>
+                <default>false</default>
+                <label>Classroom Library</label>
+            </value>
+            <value>
+                <fullName>Package</fullName>
+                <default>false</default>
+                <label>Package</label>
+            </value>
+            <value>
+                <fullName>Series</fullName>
+                <default>false</default>
+                <label>Series</label>
+            </value>
+            <value>
+                <fullName>Set</fullName>
+                <default>false</default>
+                <label>Set</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

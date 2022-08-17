@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Format__c</fullName>
+    <externalId>false</externalId>
+    <label>Format</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Big Book</fullName>
+                <default>false</default>
+                <label>Big Book</label>
+            </value>
+            <value>
+                <fullName>Board Book</fullName>
+                <default>false</default>
+                <label>Board Book</label>
+            </value>
+            <value>
+                <fullName>Hardcover</fullName>
+                <default>false</default>
+                <label>Hardcover</label>
+            </value>
+            <value>
+                <fullName>Hardcover plus CD</fullName>
+                <default>false</default>
+                <label>Hardcover plus CD</label>
+            </value>
+            <value>
+                <fullName>Interactive Perpetual License</fullName>
+                <default>false</default>
+                <label>Interactive Perpetual License</label>
+            </value>
+            <value>
+                <fullName>Interactive Responsive Audio</fullName>
+                <default>false</default>
+                <label>Interactive Responsive Audio</label>
+            </value>
+            <value>
+                <fullName>Mixed</fullName>
+                <default>false</default>
+                <label>Mixed</label>
+            </value>
+            <value>
+                <fullName>Online Database Application Subscription</fullName>
+                <default>false</default>
+                <label>Online Database Application Subscription</label>
+            </value>
+            <value>
+                <fullName>Paperback</fullName>
+                <default>false</default>
+                <label>Paperback</label>
+            </value>
+            <value>
+                <fullName>Read-Along Fixed Layout ePub Subscription</fullName>
+                <default>false</default>
+                <label>Read-Along Fixed Layout ePub Subscription</label>
+            </value>
+            <value>
+                <fullName>Teachers Guide</fullName>
+                <default>false</default>
+                <label>Teachers Guide</label>
+            </value>
+            <value>
+                <fullName>eBook PDF</fullName>
+                <default>false</default>
+                <label>eBook PDF</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

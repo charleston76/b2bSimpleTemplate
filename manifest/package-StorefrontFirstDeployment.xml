@@ -42,14 +42,15 @@
 		<members>*</members>
 		<name>Flow</name>
 	</types -->
-	<!-- types>
-		<members>Account-Admin - View All Layout</members>
-		<members>Contact-ALL</members>
+	<types>
+		<members>Account-Account Layout</members>
+		<members>BuyerAccount-Buyer Account Layout</members>
+		<members>Contact-Contact Layout</members>
 		<members>Order-Order Layout</members>
 		<members>OrderSummary-Order Summary Layout</members>
 		<members>Product2-Product Layout</members>
 		<name>Layout</name>
-	</types -->
+	</types>
 	<types>
 		<members>*</members>
 		<name>LightningComponentBundle</name>

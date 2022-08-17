@@ -46,6 +46,7 @@
     <columns>
         <field>Order$Account</field>
     </columns>
+    <currency>BRL</currency>
     <description>Displays orders based on the date that they were placed.</description>
     <filter>
         <criteriaItems>

@@ -46,6 +46,7 @@
     <columns>
         <field>Order$Account</field>
     </columns>
+    <currency>BRL</currency>
     <description>Shows the average value of orders by date.</description>
     <filter>
         <criteriaItems>

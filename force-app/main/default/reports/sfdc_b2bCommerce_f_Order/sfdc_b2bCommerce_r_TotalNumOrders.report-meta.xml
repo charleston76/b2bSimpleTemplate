@@ -36,6 +36,7 @@
     <columns>
         <field>Order$Account</field>
     </columns>
+    <currency>BRL</currency>
     <description>Shows the total number of completed orders.</description>
     <filter>
         <criteriaItems>

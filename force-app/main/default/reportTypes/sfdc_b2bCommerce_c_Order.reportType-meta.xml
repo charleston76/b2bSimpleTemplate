@@ -63,7 +63,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>CustomerAuthorizedDate</field>
+            <table>Order</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>CompanyAuthorizedBy</field>
+            <table>Order</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CompanyAuthorizedDate</field>
             <table>Order</table>
         </columns>
         <columns>
@@ -99,16 +109,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>BillingCountry</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BillingStateCode</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BillingCountryCode</field>
             <table>Order</table>
         </columns>
         <columns>
@@ -158,16 +158,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>ShippingStateCode</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>ShippingCountryCode</field>
-            <table>Order</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>ShippingLatitude</field>
             <table>Order</table>
         </columns>
@@ -183,6 +173,36 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Name</field>
+            <table>Order</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PoDate</field>
+            <table>Order</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>PoNumber</field>
+            <table>Order</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>OrderReferenceNumber</field>
+            <table>Order</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BillToContact</field>
+            <table>Order</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ShipToContact</field>
+            <table>Order</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>ActivatedDate</field>
             <table>Order</table>
         </columns>
@@ -194,6 +214,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>StatusCode</field>
+            <table>Order</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CurrencyIsoCode</field>
             <table>Order</table>
         </columns>
         <columns>

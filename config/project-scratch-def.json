@@ -1,7 +1,8 @@
 {
     "orgName": "My Test B2B Company",
     "edition": "Developer",
-    "features": ["Communities", "B2BCommerce", "OrderManagement", "EnableSetPasswordInApi"],
+    "country": "US",  
+    "features": [ "MultiCurrency","Communities", "B2BCommerce", "OrderManagement", "EnableSetPasswordInApi"],
     "settings": {
         "lightningExperienceSettings": {
             "enableS1DesktopEnabled": true

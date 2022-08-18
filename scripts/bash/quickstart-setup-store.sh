@@ -179,7 +179,7 @@ mv -f $tmpfile $networkMetaFile
 
 # Import Products and related data
 # Get new Buyer Group Name
-echo "4. W are not importing products and the other things, for now"
+echo "4. Importing products and the other things"
 buyergroupName=$(bash ./scripts/bash/import_products.sh $1 | tail -n 1)
 
 
@@ -195,8 +195,8 @@ sfdx force:data:record:update -s User -v "UserRoleId='$newRoleID'" -w "Username=
 
 # Create Buyer User. Go to config/buyer-user-def.json to change name, email and alias.
 echo "6. Creating Buyer User with associated Contact and Account."
-sfdx force:user:create -f config/buyer-user-def.json
-buyerusername=`grep -i '"Username":' scripts/config/buyer-user-def.json|cut -d "\"" -f 4`
+sfdx force:user:create -f scripts/json/buyer-user-def.json
+buyerusername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
 
 echo "buyerusername >>>>>>>>>> " $buyerusername
 

@@ -5,10 +5,5 @@
         <sharedTo>AllInternalUsers</sharedTo>
         <sharedToType>Organization</sharedToType>
     </folderShares>
-    <folderShares>
-        <accessLevel>Manage</accessLevel>
-        <sharedTo>charleston.santos@gmail.com.jgthconsultoria</sharedTo>
-        <sharedToType>User</sharedToType>
-    </folderShares>
     <name>Commerce Reports</name>
 </ReportFolder>

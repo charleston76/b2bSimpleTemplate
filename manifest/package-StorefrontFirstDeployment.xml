@@ -35,7 +35,7 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>Account_Record_Page1</members>
+		<members>Account_Record_Page</members>
 		<name>FlexiPage</name>
 	</types>
 	<!-- types>

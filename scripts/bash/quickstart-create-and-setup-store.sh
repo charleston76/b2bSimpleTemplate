@@ -64,6 +64,7 @@ set -x
 echo "Doing the first deployment"
 rm -rf Deploy
 sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-StorefrontFirstDeployment.xml
+sed 's/"<version>50.0</version>"/"<version>54.0</version>"/g' manifest/package-StorefrontFirstDeployment.xml > manifest/package-Deploy.xml
 # These test classes will be added as soon as possible
 # sfdx force:mdapi:deploy -d ..\..\Deploy/ -w 10 -l RunSpecifiedTests -r B2BAuthorizeTokenizedPaymentTest,B2BCheckInventorySampleTest,B2BDeliverySampleTest,B2BPaymentControllerTest,B2BPricingSampleTest,B2BSyncCheckInventoryTest,B2BSyncDeliveryTest,B2BSyncPricingTest,B2BSyncTaxTest,B2BTaxSampleTest,QuickStartIntegrationTest
 # But for now, we'll just deploy it

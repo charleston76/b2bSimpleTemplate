@@ -1,5 +1,5 @@
 {
-    "orgName": "My Test B2B Company",
+    "orgName": "Test B2B Company",
     "edition": "Developer",
     "country": "US",  
     "features": [ "MultiCurrency","Communities", "B2BCommerce", "OrderManagement", "EnableSetPasswordInApi"],
@@ -20,6 +20,9 @@
             "enableOrders": true,
             "enableEnhancedCommerceOrders": true,
             "enableOptionalPricebook": true
+        },
+        "commerceSettings": {
+          "commerceEnabled": true
         }
     }
 }

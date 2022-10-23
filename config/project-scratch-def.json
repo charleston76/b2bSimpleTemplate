@@ -19,7 +19,11 @@
         "orderSettings": {
             "enableOrders": true,
             "enableEnhancedCommerceOrders": true,
-            "enableOptionalPricebook": true
+            "enableOptionalPricebook": true,
+            "enableNegativeQuantity" : false,
+            "enableOrderEvents" : false,
+            "enableReductionOrders" : true,
+            "enableZeroQuantity" : false
         },
         "commerceSettings": {
           "commerceEnabled": true

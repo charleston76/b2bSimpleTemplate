@@ -1,15 +1,3 @@
-# B2B Advanced Reference Components
-
-We provide this collection of Lightning Web Components (LWCs) as examples of configured B2B core components. Use these structures and behaviors to guide your own creation of custom B2B components that leverage existing platform features and APIs.
-
-This repository is an SFDX project that you can deploy directly to an org and modify.
-
-## Getting Started
-
-### SFDX Setup
-
-1. Before continuing with the steps below, see [Salesforce DX Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm) to setup SFDX.
-
 ## Setup
 
 1. If you haven't already, clone this repository.

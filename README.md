@@ -1,6 +1,15 @@
 ## Setup
 
-1. If you haven't already, clone this repository.
+From where we got those ideas?
+1. The b2b sample was got from this free salesforce material:
+[b2b-commerce-on-lightning-quickstart](https://github.com/forcedotcom/b2b-commerce-on-lightning-quickstart)
+1. The multilevel navigation menu was got from this free salesforce material:
+[MultiLevelNavigationMenus](https://github.com/SalesforceLabs/MultiLevelNavigationMenus)
+
+
+
+
+<!-- 1. If you haven't already, clone this repository.
 1. If you haven't already, create a B2B Commerce org.
     Optional: Use the included [project-scratch-def.json](config/project-scratch-def.json), e.g. `sfdx force:org:create -f ./config/project-scratch-def.json`
 1. Push the source code in this repository to the new org, e.g. `sfdx force:source:push -u <org username>`.
@@ -11,9 +20,9 @@
     1. On the B2BGetInfo class, click "Security".
     1. Assign the buyer user profile(s) or other user profiles that will use your components.
     1. Click Save.
-    1. Repeat steps iii-v for B2BCartControllerSample class.
+    1. Repeat steps iii-v for B2BCartControllerSample class. -->
 
-## Usage
+<!-- ## Usage
 
 1. Create a Commerce store.
 1. Go to the Commerce app, and select the store.
@@ -58,4 +67,4 @@ Debugging with the flow typically requires impersonating a buyer [Run flow as an
 
 1. Don't debug and instead run as the buyer within the store relying on errors sent to the email specified in `Process Automation Settings` to find problems.
 1. If you know the buyer's account you can make a change in [B2BPaymentController.cls](force-app/main/default/classes/B2BPaymentController.cls). Directions are specified near the top of `getPaymentInfo()`.
-1. You can also make a change in the `getUserAccountInfo()` method in [B2BUtils.cls](force-app/main/default/classes/B2BUtils.cls). Here you would put the ID of the user instead of the call to `UserInfo.getUserId();`. This was not documented within the class as the effects would be farther reaching than in B2BPaymentController.cls.
+1. You can also make a change in the `getUserAccountInfo()` method in [B2BUtils.cls](force-app/main/default/classes/B2BUtils.cls). Here you would put the ID of the user instead of the call to `UserInfo.getUserId();`. This was not documented within the class as the effects would be farther reaching than in B2BPaymentController.cls. -->

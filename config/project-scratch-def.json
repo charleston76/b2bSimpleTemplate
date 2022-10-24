@@ -2,7 +2,13 @@
     "orgName": "Test B2B Company",
     "edition": "Developer",
     "country": "US",  
-    "features": [ "MultiCurrency","Communities", "B2BCommerce", "OrderManagement", "EnableSetPasswordInApi"],
+    "features": [ 
+        "MultiCurrency",
+        "Communities", 
+        "B2BCommerce", 
+        "OrderManagement", 
+        "EnableSetPasswordInApi"
+    ],
     "settings": {
         "lightningExperienceSettings": {
             "enableS1DesktopEnabled": true
@@ -11,7 +17,8 @@
             "enableExperienceBundleMetadata": true
         },
         "communitiesSettings": {
-            "enableNetworksEnabled": true
+            "enableNetworksEnabled": true,
+            "enableOotbProfExtUserOpsEnable": true
         },
         "orderManagementSettings": {
             "enableOrderManagement": true

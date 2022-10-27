@@ -1,10 +1,99 @@
-## Setup
+# Well, here we are!
 
-From where we got those ideas?
+This repository is supposed to help with some necessary procedures to easily create a B2B scratch, developer, sandbox or even a production organization environment, of course, respecting some necessary steps to achieve that.
+
+Probably you may think: from where they got those ideas?
+
+So simple:
 1. The b2b sample was got from this free salesforce material:
 [b2b-commerce-on-lightning-quickstart](https://github.com/forcedotcom/b2b-commerce-on-lightning-quickstart)
 1. The multilevel navigation menu was got from this free salesforce material:
 [MultiLevelNavigationMenus](https://github.com/SalesforceLabs/MultiLevelNavigationMenus)
+
+<strong>Spoiler alert</strong>: That multiLevel navigation is not implemented on this version yet... but is very cool, take a look there.
+
+
+To use this guidance, we are expecting that you are comfortable with:
+* [Salesforce DX](https://trailhead.salesforce.com/content/learn/projects/quick-start-salesforce-dx) ;
+* [Salesforce CLI features](https://developer.salesforce.com/tools/sfdxcli), and;
+* [Git CLI](https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line) (ok, we also not will use it here, but it will help you to know).
+
+
+## First things first: Local environment
+
+In your workstation, you need to have the following softwares installed:
+
+* Salesforce CLI
+* Visual Studio Code with the pluggins below:
+    * GitLens;
+    * Salesforce Extension Pack;
+    * Salesforce CLI Integration;
+    * Salesforce Package.xml Generator Extension for VS Code (over again, we'll not use it here, but it will help you to know);
+
+## Setup
+
+### Scratch orgs
+
+To work with Scratch orgs, you will need:
+1. [Enable Dev Hub Features in Your Org](https://help.salesforce.com/s/articleView?id=sf.sfdx_setup_enable_devhub.htm&type=5) (it could be trail, develop or even a productive one).
+1. Authorize that Devhub org (please, see the [All Organizations](#allorg) under "Authorize the organization - Example to authorize set a devhubuser" section);
+1. Create your scratch org based on the project file
+    * sfdx force:org:create -f config/project-scratch-def.json -a [YOUR_ALIAS_HERE] -d 30
+    * That will create the scratch org with a lot of features enable, please take a look on [that project file](config/project-scratch-def.json) to get familiar
+    * The "-d" parameter, tells the amount of days that you want your scratch organization last
+    * Example:
+        ```
+        sfdx force:org:create -f config/project-scratch-def.json -a tmpB2b -d 1
+        ```
+    * Set that as you default organization:
+        ```
+        sfdx force:config:set defaultusername=tmpB2b
+        ```
+1. Deploy the necessary metadada before push (please see the [All Organizations](#allorg) under "Deploying the additional settings" section);
+1. Just push you code, and be happy!
+    ```
+    sfdx force:source:push
+    ```
+
+
+### [All Organizations](#allorg)
+
+* Authorize the organization
+    * You can do that pressing the "ctrl + shift + p" keys in VSCode, or;
+    * Use the commands below:
+        * Example to authorize set a devhubuser:
+        * sfdx force:auth:web:login -a [YOUR_ALIAS_HERE] --setdefaultdevhubusername --setdefaultusername 
+            ```
+            sfdx force:auth:web:login -a b2bSimplesSampe --setdefaultdevhubusername --setdefaultusername 
+            ```
+        * You also can set the default devhubuser after the authorization, like that:
+            ```
+            sfdx force:config:set defaultdevhubusername=[YOUR_ALIAS_HERE OR USER_NAME_HERE]
+            ```
+        * Example to authorize a sandbox org:
+            ```
+            sfdx auth:web:login -a [YOUR_ALIAS_HERE] -s -r https://test.salesforce.com
+            ```        
+        * Example to authorize a trial, develop or production org:
+            ```
+            sfdx auth:web:login -a [YOUR_ALIAS_HERE] -s 
+            ```        
+        * If you do not want to set that org as your default to the project, just suppress the parameter "-s"
+
+* Deploying the additional settings
+    * Some things like Currency, Order, Order management, etc,  needs to be enable with metadata changes, to do that, we have created the [manifest/package-AdditionalSettings.xml](manifest/package-AdditionalSettings.xml) file.
+
+        Please, feel free to uncomment the necessary setting you may need in your deployment.
+    * With the things do you need, you can deploy into you environment with the following commands:
+        1. rm -rf Deploy (To clean the deployment folder);
+        1. sfdx force:source:convert -r force-app/ -d Deploy -x MANIFEST_FILE.xml (To convert the source in metadata);
+        1. sfdx force:mdapi:deploy -u [YOUR_ALIAS_HERE] -d Deploy/ -w -1 (To deploy the things there);
+        1. Example
+            ```
+            rm -rf Deploy
+            sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-AdditionalSettings.xml
+            sfdx force:mdapi:deploy -u tmpB2b -d Deploy/ -w -1 
+            ```        
 
 
 

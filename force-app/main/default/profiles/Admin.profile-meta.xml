@@ -11,7 +11,7 @@
         <visible>true</visible>
     </applicationVisibilities>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.AccountNumber</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -31,6 +31,31 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.CleanStatus</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.DandbCompanyId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.DunsNumber</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Fax</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.Industry</field>
         <readable>true</readable>
@@ -42,6 +67,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.NaicsCode</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.NaicsDesc</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.NumberOfEmployees</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.OperatingHoursId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.Ownership</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -56,7 +101,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Rating</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -66,7 +111,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Sic</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -76,13 +121,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Site</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.TickerSymbol</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Tradestyle</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -97,6 +147,221 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.YearStarted</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.AccountId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.AssetId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.BusinessHoursId</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.ClosedDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.ClosedOnCreate</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.ContactId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.EntitlementId</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.IsClosedOnCreate</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.IsEscalated</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.IsStopped</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.MilestoneStatus</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.MilestoneStatusIcon</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Origin</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.ParentId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Priority</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.ProductId</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Reason</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.ServiceContractId</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SlaExitDate</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SlaStartDate</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.SourceId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.StopStartDate</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Subject</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SuppliedCompany</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SuppliedEmail</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SuppliedName</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SuppliedPhone</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Type</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.AccountId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.Amount</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.CampaignId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.ContractId</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.ExpectedRevenue</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.IsPrivate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.LeadSource</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.NextStep</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.PartnerAccountId</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.Probability</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.TotalOpportunityQuantity</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.Type</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Order.ActivatedById</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -106,9 +371,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Order.BillToContactId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -131,19 +396,19 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Order.CompanyAuthorizedDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Order.ContractEndDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Order.ContractName</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -151,9 +416,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Order.CustomerAuthorizedDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -166,9 +431,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Order.Name</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -176,9 +441,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Order.OrderReferenceNumber</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -186,14 +451,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Order.PoDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Order.PoNumber</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -206,9 +471,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Order.ShipToContactId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -315,11 +580,63 @@
         <field>OrderDeliveryMethod.ReferenceNumber</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.DisplayUrl</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.ExternalDataSourceId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.ExternalId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Family</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.ProductCode</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.QuantityUnitOfMeasure</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.StockKeepingUnit</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <layoutAssignments>
+        <layout>Account-Account Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>BuyerAccount-Buyer Account Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Contact Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Order-Order Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>OrderSummary-Order Summary Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product2-Product Layout</layout>
     </layoutAssignments>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -354,7 +671,25 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>Case</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>CommerceEntitlementPolicy</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Opportunity</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -448,15 +783,23 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-BuyerGroupPricebook</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Case</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-CommerceEntitlementPolicy</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>standard-Opportunity</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>standard-Order</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-OrderDeliveryMethod</tab>
@@ -480,7 +823,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-ProductCategory</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-WebStore</tab>
@@ -488,7 +831,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-WebStorePricebook</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
@@ -529,14 +872,6 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ApproveContract</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ArchiveArticles</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>AssignPermissionSets</name>
     </userPermissions>
     <userPermissions>
@@ -550,6 +885,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>BulkMacrosAllowed</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>CanAccessCE</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -789,10 +1128,6 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>InboundMigrationToolsUser</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>InstallPackaging</name>
     </userPermissions>
     <userPermissions>
@@ -937,6 +1272,10 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>ManageOrchInstsAndWorkItems</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>ManagePackageLicenses</name>
     </userPermissions>
     <userPermissions>
@@ -985,10 +1324,6 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ManageSandboxes</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>ManageSearchPromotionRules</name>
     </userPermissions>
     <userPermissions>
@@ -1010,14 +1345,6 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ManageSynonyms</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ManageTerritories</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ManageTrustMeasures</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -1061,14 +1388,6 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>OutboundMigrationToolsUser</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>OverrideForecasts</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>Packaging2</name>
     </userPermissions>
     <userPermissions>
@@ -1077,19 +1396,15 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>Packaging2PromoteVersion</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>PrivacyDataAccess</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>PublishArticles</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>PublishPackaging</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>PublishTranslation</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -1102,10 +1417,6 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>RunReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ScheduleJob</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -1125,6 +1436,10 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>ShareFilesWithNetworks</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>ShareInternalArticles</name>
     </userPermissions>
     <userPermissions>
@@ -1134,10 +1449,6 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>SolutionImport</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>SubmitForTranslation</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -1189,7 +1500,7 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>UpdateWithInactiveOwner</name>
+        <name>UseAddOrderItemSummaryAPIs</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -1201,15 +1512,15 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>UseOrderManagementAPIs</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>UseReturnOrder</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>UseReturnOrderAPIs</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>UseShipment</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -1225,19 +1536,11 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ViewAllForecasts</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>ViewAllProfiles</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewAllUsers</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewArchivedArticles</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -1249,11 +1552,11 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ViewDeveloperName</name>
+        <name>ViewDataLeakageEvents</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ViewDraftArticles</name>
+        <name>ViewDeveloperName</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -1262,6 +1565,50 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewFlowUsageAndFlowEventData</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewHealthCheck</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewHelpLink</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewMLModels</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewMyTeamsDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPlatformEvents</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewRoles</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewSetup</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewUserPII</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>WorkCalibrationUser</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

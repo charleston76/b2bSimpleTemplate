@@ -63,7 +63,7 @@ set -x
 # But we need it in an sandbox or productive orgs
 echo "Doing the first deployment"
 rm -rf Deploy
-sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-StorefrontFirstDeployment.xml
+sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-mainObjects1.xml
 filename='Deploy/package.xml'
 newFilename='Deploy/packageNew.xml'
 sed "s/50.0/54.0/g" "$filename" > "$newFilename"

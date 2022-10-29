@@ -187,8 +187,8 @@ buyergroupName=$(bash ./scripts/bash/import_products.sh $1 | tail -n 1)
 # Assign a role to the admin user, else update user will error out
 echo "5. Mapping Admin User to Role."
 ceoID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'CEO'" -r csv |tail -n +2`
-sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminRoleFromQuickstart' DeveloperName='AdminRoleFromQuickstart' RollupDescription='AdminRoleFromQuickstart' "
-newRoleID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleFromQuickstart'" -r csv |tail -n +2`
+sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminRoleScriptCreation' DeveloperName='AdminRoleScriptCreation' RollupDescription='AdminRoleScriptCreation' "
+newRoleID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
 username=`sfdx force:user:display | grep "Username" | sed 's/Username//g;s/^[[:space:]]*//g'`
 
 sfdx force:data:record:update -s User -v "UserRoleId='$newRoleID'" -w "Username='$username'"
@@ -197,6 +197,7 @@ sfdx force:data:record:update -s User -v "UserRoleId='$newRoleID'" -w "Username=
 echo "6. Creating Buyer User with associated Contact and Account."
 sfdx force:user:create -f scripts/json/buyer-user-def.json
 buyerusername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
+buyerusername = "${1}'.'${buyerusername}"
 
 echo "buyerusername >>>>>>>>>> " $buyerusername
 

@@ -32,7 +32,7 @@ public class B2BPaymentControllerTest {
         
         // This profile name is the name of the buyer profile. The name specified here is what is installed using
         // SFDX and may be different for you.
-        Profile profile = [SELECT Id FROM Profile WHERE Name='Buyer_User_Profile_From_QuickStart' LIMIT 1];
+        Profile profile = [SELECT Id FROM Profile WHERE Name='Buyer Profile' LIMIT 1];
         User user = new User(Alias='buyer', Email='buyer@example.com', LastName='Buyer',
                 TimeZoneSidKey='GMT', LocaleSidKey='en_US', Username='buyer@example.com',
                 EmailEncodingKey='UTF-8', ProfileId=profile.Id, LanguageLocaleKey='en_US',

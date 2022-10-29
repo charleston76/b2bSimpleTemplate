@@ -19,8 +19,16 @@ else
 	
 	# Buyer Group
 	numberofbuyergroups=`sfdx force:data:soql:query -q "SELECT COUNT(Id) FROM BuyerGroup" -r csv  |tail -n +2`
+	# newnumber=$(($numberofbuyergroups + 1))
+	# newbuyergroupname="BUYERGROUP_FROM_QUICKSTART_${newnumber}"
 	newnumber=$(($numberofbuyergroups + 1))
-	newbuyergroupname="BUYERGROUP_FROM_QUICKSTART_${newnumber}"
+	firstOne=1
+	if [ "$newnumber" -gt "$firstOne" ]; 
+	then
+		newbuyergroupname="$1 Buyer Group${newnumber}"
+	else
+		newbuyergroupname="$1 Buyer Group"
+	fi	
 
 	echo "Checking if exists a buyer group created"
 	checkExistingBuyergroupID=`sfdx force:data:soql:query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '$newbuyergroupname'" -r csv |tail -n +2`

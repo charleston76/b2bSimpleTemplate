@@ -36,7 +36,7 @@ In your workstation, you need to have the following softwares installed:
 
 To work with Scratch orgs, you will need:
 1. [Enable Dev Hub Features in Your Org](https://help.salesforce.com/s/articleView?id=sf.sfdx_setup_enable_devhub.htm&type=5) (it could be trail, develop or even a productive one).
-1. Authorize that Devhub org (please, see the [All Organizations](#allorg) under "Authorize the organization - Example to authorize set a devhubuser" section);
+1. Authorize that Devhub org (please, see the [All Organizations](#All-org-authorize) under "Authorize the organization - Example to authorize set a devhubuser" section);
 1. Create your scratch org based on the project file
     * sfdx force:org:create -f config/project-scratch-def.json -a [YOUR_ALIAS_HERE] -d 30
     * That will create the scratch org with a lot of features enable, please take a look on [that project file](config/project-scratch-def.json) to get familiar
@@ -49,16 +49,16 @@ To work with Scratch orgs, you will need:
         ```
         sfdx force:config:set defaultusername=tmpB2b
         ```
-1. Deploy the necessary metadada before push (please see the [All Organizations](#allorg) under "Deploying the additional settings" section);
-1. Just push you code, and be happy!
+1. Deploy the necessary metadada before push (please see the [All Organizations](#All-org-additional-settings) under "Deploying the additional settings" section);
+1. Deploy the aditional things with the script (please see the [Scripting deploying](#All-org-script-deploy) under "Deploying the additional settings" section);
     ```
-    sfdx force:source:push
+    ./scripts/bash/createAndSetupStore.sh Shop
     ```
 
 
-### [All Organizations](#allorg)
+### All Organizations
 
-* Authorize the organization
+* [Authorize the organization](#all-org-authorize)
     * You can do that pressing the "ctrl + shift + p" keys in VSCode, or;
     * Use the commands below:
         * Example to authorize set a devhubuser:
@@ -80,7 +80,7 @@ To work with Scratch orgs, you will need:
             ```        
         * If you do not want to set that org as your default to the project, just suppress the parameter "-s"
 
-* Deploying the additional settings
+* [Deploying the additional settings](#all-org-additional-settings)
     * Some things like Currency, Order, Order management, etc,  needs to be enable with metadata changes, to do that, we have created the [manifest/package-AdditionalSettings.xml](manifest/package-AdditionalSettings.xml) file.
 
         Please, feel free to uncomment the necessary setting you may need in your deployment.
@@ -94,6 +94,7 @@ To work with Scratch orgs, you will need:
             sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-AdditionalSettings.xml
             sfdx force:mdapi:deploy -u tmpB2b -d Deploy/ -w -1 
             ```        
+* [Scripting deploying](#all-org-script-deploy)
 
 
 

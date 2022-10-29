@@ -17,6 +17,7 @@
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>standard-CommerceEntitlementPolicy</tabs>
+    <tabs>standard-BuyerGroup</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Order</tabs>
     <tabs>standard-OrderSummary</tabs>
@@ -25,6 +26,9 @@
     <workspaceConfig>
         <mappings>
             <tab>standard-Account</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-BuyerGroup</tab>
         </mappings>
         <mappings>
             <tab>standard-CommerceEntitlementPolicy</tab>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-	<types>
+	<!-- No classes types>
 		<members>*</members>
 		<name>ApexClass</name>
-	</types>
+	</types -->
 	<types>
 		<members>Images</members>
 		<members>imagelocation1</members>
@@ -19,9 +19,7 @@
 		<members>Case</members>
 		<members>BuyerGroup</members>
 		<members>BuyerGroupPricebook</members>
-		<!-- members>CommerceDiagnosticCustomObject__c</members -->
 		<members>CommerceEntitlementPolicy</members>
-		<!-- members>GuestBuyerProfile</members -->
 		<members>Opportunity</members>
 		<members>Order</members>
 		<members>OrderDeliveryMethod</members>
@@ -38,7 +36,7 @@
 		<members>Account_Record_Page</members>
 		<name>FlexiPage</name>
 	</types>
-	<!-- types>
+	<!-- No flows yet types>
 		<members>*</members>
 		<name>Flow</name>
 	</types -->
@@ -51,12 +49,12 @@
 		<members>Product2-Product Layout</members>
 		<name>Layout</name>
 	</types>
-	<types>
+	<!-- No lwc yet types>
 		<members>*</members>
 		<name>LightningComponentBundle</name>
-	</types>
+	</types -->
 	<types>
-		<members>OrderSummary.My_order_Summaries</members>
+		<members>OrderSummary.all_order_summaries</members>
 		<name>ListView</name>
 	</types>
 	<types>

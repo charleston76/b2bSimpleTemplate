@@ -9,6 +9,7 @@ So simple:
 [b2b-commerce-on-lightning-quickstart](https://github.com/forcedotcom/b2b-commerce-on-lightning-quickstart)
 1. The multilevel navigation menu was got from this free salesforce material:
 [MultiLevelNavigationMenus](https://github.com/SalesforceLabs/MultiLevelNavigationMenus)
+1. Generic ideas gathered meanwhile working in different projects around the world
 
 <strong>Spoiler alert</strong>: That multiLevel navigation is not implemented on this version yet... but is very cool, take a look there.
 
@@ -32,6 +33,17 @@ In your workstation, you need to have the following softwares installed:
 
 ## Setup
 
+All scripts, deployments and configurations will be applied *in your local defaul organization*.
+To get sure about wich is your, please run the command below:
+
+
+### Scratch orgs with devHub already enabled
+
+If you already are working with scratch orgs and have all defined in your main org.
+You just need to run the command below
+
+
+
 ### Scratch orgs
 
 To work with Scratch orgs, you will need:
@@ -52,7 +64,7 @@ To work with Scratch orgs, you will need:
 1. Deploy the necessary metadada before push (please see the [All Organizations](#All-org-additional-settings) under "Deploying the additional settings" section);
 1. Deploy the aditional things with the script (please see the [Scripting deploying](#All-org-script-deploy) under "Deploying the additional settings" section);
     ```
-    ./scripts/bash/createAndSetupStore.sh Shop
+    ./scripts/bash/createDigitalExpSetupStore.sh Shop
     ```
 
 

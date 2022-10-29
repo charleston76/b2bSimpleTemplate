@@ -37,6 +37,17 @@ then
 else
     storename=$1
 fi
+
+# Check if the store nam already exist, to no try create with error
+checkExistinStoreId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
+
+if [ ! -z "$checkExistinStoreId" ]
+then
+    echo_attention "Already exists an web store with this name, please define another."
+    error_and_exit "The setup will stop."
+fi	
+
+
 sfdx force:community:create --name "$storename" --templatename "B2B Commerce" --urlpathprefix "$storename" --description "Store $storename created by Quick Start script."
 echo ""
 
@@ -63,15 +74,7 @@ set -x
 # But we need it in an sandbox or productive orgs
 echo "Doing the first deployment"
 rm -rf Deploy
-sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-mainObjects1.xml
-filename='Deploy/package.xml'
-newFilename='Deploy/packageNew.xml'
-sed "s/50.0/54.0/g" "$filename" > "$newFilename"
-if [ -f $filename ]; then
-   rm "$filename"
-   echo "$filename is removed"
-    mv "$newFilename" "$filename"
-fi
+sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01mainObjects.xml
 
 # These test classes will be added as soon as possible
 # sfdx force:mdapi:deploy -d ..\..\Deploy/ -w 10 -l RunSpecifiedTests -r B2BAuthorizeTokenizedPaymentTest,B2BCheckInventorySampleTest,B2BDeliverySampleTest,B2BPaymentControllerTest,B2BPricingSampleTest,B2BSyncCheckInventoryTest,B2BSyncDeliveryTest,B2BSyncPricingTest,B2BSyncTaxTest,B2BTaxSampleTest,QuickStartIntegrationTest
@@ -91,4 +94,4 @@ echo ""
 # # Cleaning up if a previous run failed
 rm -rf experience-bundle-package
 
-./scripts/bash/quickstart-setup-store.sh "${storename}" || error_and_exit "Store setup failed."
+./scripts/bash/setupStore.sh "${storename}" || error_and_exit "Store setup failed."

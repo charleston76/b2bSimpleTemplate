@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-	<!-- No classes types>
+	<types>
 		<members>*</members>
 		<name>ApexClass</name>
-	</types -->
+	</types>
 	<types>
 		<members>Images</members>
 		<members>imagelocation1</members>
@@ -20,6 +20,8 @@
 		<members>BuyerGroup</members>
 		<members>BuyerGroupPricebook</members>
 		<members>CommerceEntitlementPolicy</members>
+		<members>Menu__c</members>
+		<members>Menu_Item__c</members>
 		<members>Opportunity</members>
 		<members>Order</members>
 		<members>OrderDeliveryMethod</members>
@@ -34,27 +36,34 @@
 	</types>
 	<types>
 		<members>Account_Record_Page</members>
+		<members>Community_Menus</members>
 		<name>FlexiPage</name>
 	</types>
-	<!-- No flows yet types>
+	<types>
 		<members>*</members>
 		<name>Flow</name>
-	</types -->
+	</types>
+	<types>
+		<members>Languages</members>
+		<name>GlobalValueSet</name>
+	</types>
 	<types>
 		<members>Account-Account Layout</members>
 		<members>BuyerAccount-Buyer Account Layout</members>
 		<members>Contact-Contact Layout</members>
+		<members>Menu__c-Menu Layout</members>
+		<members>Menu_Item__c-Menu Item Layout</members>
 		<members>Order-Order Layout</members>
 		<members>OrderSummary-Order Summary Layout</members>
 		<members>Product2-Product Layout</members>
 		<name>Layout</name>
 	</types>
-	<!-- No lwc yet types>
+	<types>
 		<members>*</members>
 		<name>LightningComponentBundle</name>
-	</types -->
+	</types>
 	<types>
-		<members>OrderSummary.all_order_summaries</members>
+		<members>OrderSummary.My_order_Summaries</members>
 		<name>ListView</name>
 	</types>
 	<types>
@@ -85,5 +94,9 @@
 		<members>sfdc_b2bCommerce_c_Order</members>
 		<name>ReportType</name>
 	</types>
-	<version>54.0</version>
+	<types>
+		<members>menusManager</members>
+		<name>StaticResource</name>
+	</types>	
+	<version>55.0</version>
 </Package>

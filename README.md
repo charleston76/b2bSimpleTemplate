@@ -3,7 +3,7 @@
 This repository is supposed to help with some necessary procedures to easily create a B2B scratch, developer, sandbox or even a production organization environment, of course, respecting some necessary steps, licenses and configurations to achieve that.
 
 
-Please, take a look on this **video demo**!
+Please, take a look on this **video demo** (better in playback speed 1.5)!
 
 [![Execution example](images/b2bSimpleTemplate.png)](https://drive.google.com/file/d/1Avtl9hj3Bg9139RobQa3qhhhgOwdMam1/view?usp=share_link)
 

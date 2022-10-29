@@ -39,10 +39,10 @@
 		<members>Community_Menus</members>
 		<name>FlexiPage</name>
 	</types>
-	<types>
+	<!-- types>
 		<members>*</members>
 		<name>Flow</name>
-	</types>
+	</types -->
 	<types>
 		<members>Languages</members>
 		<name>GlobalValueSet</name>

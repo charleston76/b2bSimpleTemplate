@@ -24,6 +24,7 @@ To use this guidance, we are expecting that you are comfortable with:
 In your workstation, you need to have at least the following softwares installed:
 
 * Salesforce CLI
+* Salesforce [SFDX Commerce Plugin](https://github.com/forcedotcom/sfdx-1commerce-plugin)
 * Visual Studio Code with the pluggins below:
     * GitLens;
     * Salesforce Extension Pack;
@@ -58,7 +59,7 @@ If you already are working with scratch orgs and have all configured and defined
 * ./scripts/bash/createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
 * Example:
     ```
-    ./scripts/bash/createScratchDigitalExpSetupStore.sh tmpB2B Shop
+    ./scripts/bash/createScratchDigitalExpSetupStore.sh tmpNew Shop
     ```
     
 That will do all the configuration needed to achieve:
@@ -69,9 +70,7 @@ That will do all the configuration needed to achieve:
 ### Scratch org configuration
 
 
-To work with Scratch orgs, we supposed that 
-
-:
+To work with Scratch orgs, we supposed that, you need to to the steps below:
 1. [Enable Dev Hub Features in Your Org](https://help.salesforce.com/s/articleView?id=sf.sfdx_setup_enable_devhub.htm&type=5) (it could be trail, develop or even a productive one).
 1. Authorize that Devhub org (please, see the **All Organizations** under "[Authorize the organization](#authorize-the-organization) - Example to authorize set a devhubuser" section);
 1. Create your scratch org based on the project file
@@ -114,7 +113,7 @@ To work with Scratch orgs, we supposed that
             ```        
         * Example to authorize a trial, develop or production org:
             ```
-            sfdx auth:web:login -a [YOUR_ALIAS_HERE] -s 
+            sfdx auth:web:login -a tmpOrg -s 
             ```        
         * If you do not want to set that org as your default to the project, just suppress the parameter "-s"
 
@@ -126,12 +125,12 @@ To work with Scratch orgs, we supposed that
     * With the things do you need, you can deploy into you environment with the following commands:
         1. rm -rf Deploy (To clean the deployment folder);
         1. sfdx force:source:convert -r force-app/ -d Deploy -x MANIFEST_FILE.xml (To convert the source in metadata);
-        1. sfdx force:mdapi:deploy -u [YOUR_ALIAS_HERE] -d Deploy/ -w -1 (To deploy the things there);
+        1. sfdx force:mdapi:deploy -d Deploy/ -w -1 (To deploy the things there);
         1. Example
             ```
             rm -rf Deploy
             sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01additionalSettings.xml
-            sfdx force:mdapi:deploy -u tmpB2b -d Deploy/ -w -1 
+            sfdx force:mdapi:deploy -d Deploy/ -w -1 
             ```        
 * [Scripting deploying](#all-org-script-deploy)
 

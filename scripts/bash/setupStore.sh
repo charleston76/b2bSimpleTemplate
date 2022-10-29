@@ -196,22 +196,18 @@ sfdx force:data:record:update -s User -v "UserRoleId='$newRoleID'" -w "Username=
 # Create Buyer User. Go to config/buyer-user-def.json to change name, email and alias.
 echo "6. Creating Buyer User with associated Contact and Account."
 sfdx force:user:create -f scripts/json/buyer-user-def.json
-buyerusername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
-buyerusername = "${1}'.'${buyerusername}"
-
+# The code below definitely works, but I prefere define the name with the store name
+# buyerusername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
+buyerusername="buyer Account ${1}"
+# buyerusername = "'.'${buyerusername}"
 echo "buyerusername >>>>>>>>>> " $buyerusername
 
-####################################################
-#
-# We are not creating the buyer group things
-#
-###################################################
-# Get most recently created account with JITUserAccount suffix
+# Get most recently created account with Account Store Name suffix
 # Convert Account to Buyer Account
 echo "Making Account a Buyer Account."
-sfdx force:data:record:create -s Account -v "Name='$buyerusername'JITUserAccount"
+sfdx force:data:record:create -s Account -v "Name='$buyerusername'"
 
-accountID=`sfdx force:data:soql:query --query \ "SELECT Id FROM Account WHERE Name LIKE '${buyerusername}JITUserAccount' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
+accountID=`sfdx force:data:soql:query --query \ "SELECT Id FROM Account WHERE Name LIKE '${buyerusername}' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
 sfdx force:data:record:create -s BuyerAccount -v "BuyerId='$accountID' Name='BuyerAccountFromQuickstart' isActive=true"
 
 # Assign Account to Buyer Group
@@ -231,17 +227,8 @@ then
 	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='United States' IsDefault='false' Name='Non-Default Shipping' PostalCode='94105' State='California' Street='415 Mission Street (Shipping)'"
 	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Billing' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='United States' IsDefault='false' Name='Non-Default Billing' PostalCode='94105' State='California' Street='415 Mission Street (Billing)'"
 else
-	echo "There is already at least 1 Contact Point Address for your Buyer Account ${buyerusername}JITUserAccount"
+	echo "There is already at least 1 Contact Point Address for your Buyer Account ${buyerusername}"
 fi
-
-
-## This process builder is giving error, actually I've not found that one, in any environment
-# echo "Setting up Commerce Diagnostic Event Process Builder"
-# storeId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$communityNetworkName' LIMIT 1" -r csv | tail -n +2`
-# processMetaFile="experience-bundle-package/unpackaged/flows/Process_CommerceDiagnosticEvents.flow"
-# tmpfile=$(mktemp)
-# sed "s/<stringValue>0ZER000000004ZaOAI<\/stringValue>/<stringValue>$storeId<\/stringValue>/g;s/<status>Draft<\/status>/<status>Active<\/status>/g" $processMetaFile > $tmpfile
-# mv -f $tmpfile $processMetaFile
 
 echo "Setup Guest Browsing."
 echo "Checking if B2B or B2C"

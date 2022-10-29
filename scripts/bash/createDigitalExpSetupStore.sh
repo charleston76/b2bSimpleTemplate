@@ -22,7 +22,6 @@ function echo_attention() {
 # where sfdx
 # where sfdx2
 
-
 storename=""
 
 function error_and_exit() {
@@ -45,7 +44,12 @@ if [ ! -z "$checkExistinStoreId" ]
 then
     echo_attention "Already exists an web store with this name, please define another."
     error_and_exit "The setup will stop."
-fi	
+fi
+
+echo_attention "Doing the first settings definition (begin scratch or not)"
+rm -rf Deploy
+sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01additionalSettings.xml
+sfdx force:mdapi:deploy -d Deploy/ -w -1 
 
 
 sfdx force:community:create --name "$storename" --templatename "B2B Commerce" --urlpathprefix "$storename" --description "Store $storename created by Quick Start script."
@@ -66,15 +70,10 @@ echo ""
 echo_attention "Store found with id ${storeId}"
 echo ""
 
-echo_attention "Pushing store sources..."
-set -x
-# # This command was supposed to run in an scratch org
-# sfdx force:source:push -f
-
 # But we need it in an sandbox or productive orgs
-echo "Doing the first deployment"
+echo_attention "Doing the first deployment"
 rm -rf Deploy
-sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01mainObjects.xml
+sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-02mainObjects.xml
 
 # These test classes will be added as soon as possible
 # sfdx force:mdapi:deploy -d ..\..\Deploy/ -w 10 -l RunSpecifiedTests -r B2BAuthorizeTokenizedPaymentTest,B2BCheckInventorySampleTest,B2BDeliverySampleTest,B2BPaymentControllerTest,B2BPricingSampleTest,B2BSyncCheckInventoryTest,B2BSyncDeliveryTest,B2BSyncPricingTest,B2BSyncTaxTest,B2BTaxSampleTest,QuickStartIntegrationTest
@@ -88,10 +87,9 @@ set +x
 
 echo ""
 
-# I've commented out it from here, just to check the things step by stp
-# echo_attention "Setting up the store and creating the buyer user..."
 
-# # Cleaning up if a previous run failed
+echo_attention "Setting up the store and creating the buyer user..."
+# Cleaning up if a previous run failed
 rm -rf experience-bundle-package
 
 ./scripts/bash/setupStore.sh "${storename}" || error_and_exit "Store setup failed."

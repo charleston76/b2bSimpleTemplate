@@ -1,28 +1,27 @@
 # Well, here we are!
 
-This repository is supposed to help with some necessary procedures to easily create a B2B scratch, developer, sandbox or even a production organization environment, of course, respecting some necessary steps to achieve that.
+This repository is supposed to help with some necessary procedures to easily create a B2B scratch, developer, sandbox or even a production organization environment, of course, respecting some necessary steps, licenses and configurations to achieve that.
 
-Probably you may think: from where they got those ideas?
+Probably you may think: **from where they got those ideas?**
 
 So simple:
-1. The b2b sample was got from this free salesforce material:
-[b2b-commerce-on-lightning-quickstart](https://github.com/forcedotcom/b2b-commerce-on-lightning-quickstart)
-1. The multilevel navigation menu was got from this free salesforce material:
-[MultiLevelNavigationMenus](https://github.com/SalesforceLabs/MultiLevelNavigationMenus)
+1. [B2B Commerce on Lightning Experience Set Up Guide](https://resources.docs.salesforce.com/latest/latest/en-us/sfdc/pdf/b2b_standalone_setup.pdf)  a free official salesforce material;
+1. [Github b2b-commerce-on-lightning-quickstart](https://github.com/forcedotcom/b2b-commerce-on-lightning-quickstart), another oficial free material provided by salesforce;
+1. [Github MultiLevelNavigationMenus](https://github.com/SalesforceLabs/MultiLevelNavigationMenus), guess what? More free salesforce material;
 1. Generic ideas gathered meanwhile working in different projects around the world
 
-<strong>Spoiler alert</strong>: That multiLevel navigation is not implemented on this version yet... but is very cool, take a look there.
+**Spoiler alert**: That multiLevel navigation is not implemented on this version yet... but it is very cool, take a look there.
 
 
 To use this guidance, we are expecting that you are comfortable with:
 * [Salesforce DX](https://trailhead.salesforce.com/content/learn/projects/quick-start-salesforce-dx) ;
 * [Salesforce CLI features](https://developer.salesforce.com/tools/sfdxcli), and;
-* [Git CLI](https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line) (ok, we also not will use it here, but it will help you to know).
-
+* [Scratch Orgs](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs.htm)
+* [Git CLI](https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line) (ok, we will not use it here, but it will help you to know).
 
 ## First things first: Local environment
 
-In your workstation, you need to have the following softwares installed:
+In your workstation, you need to have at least the following softwares installed:
 
 * Salesforce CLI
 * Visual Studio Code with the pluggins below:
@@ -33,24 +32,50 @@ In your workstation, you need to have the following softwares installed:
 
 ## Setup
 
-All scripts, deployments and configurations will be applied *in your local defaul organization*.
-To get sure about wich is your, please run the command below:
+The scripts will be executed in the "bash terminal".
+
+All deployments and configurations will be applied in your local **default organization**.
+To get sure about which is yours, please run the command below:
+
+    sfdx force:org:list --all
+    
+![Org List](images/sfdx-org-list.png "sfdx force:org:list")
+
+* The "D" sign shows your devHub org;
+* The "U" sign shows your *local default organization* (in that one the things will be implemented);
+
+So, with that explained, let's get down to business!
+
+You use the things here in the following ways:
+1. [Scratch orgs with devHub already enabled](#scratch-orgs-with-devHub-already-enabled);
+1. [Scratch org configuration](#scratch-org-configuration) if you need do that step by step to have that;
 
 
 ### Scratch orgs with devHub already enabled
 
-If you already are working with scratch orgs and have all defined in your main org.
-You just need to run the command below
+If you already are working with scratch orgs and have all configured and defined in your main org (develop, production, etc), you just need to run the command below:
+
+* ./scripts/bash/createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
+* Example:
+    ```
+    ./scripts/bash/createScratchDigitalExpSetupStore.sh tmpB2B Shop
+    ```
+    
+That will do all the configuration needed to achieve:
+* Create the scratch org;
+* Create the digital experience;
+* Create the store front (with sample products, buyer group, entitlement policy, etc);
+
+### Scratch org configuration
 
 
+To work with Scratch orgs, we supposed that 
 
-### Scratch orgs
-
-To work with Scratch orgs, you will need:
+:
 1. [Enable Dev Hub Features in Your Org](https://help.salesforce.com/s/articleView?id=sf.sfdx_setup_enable_devhub.htm&type=5) (it could be trail, develop or even a productive one).
-1. Authorize that Devhub org (please, see the [All Organizations](#All-org-authorize) under "Authorize the organization - Example to authorize set a devhubuser" section);
+1. Authorize that Devhub org (please, see the **All Organizations** under "[Authorize the organization](#authorize-the-organization) - Example to authorize set a devhubuser" section);
 1. Create your scratch org based on the project file
-    * sfdx force:org:create -f config/project-scratch-def.json -a [YOUR_ALIAS_HERE] -d 30
+    * sfdx force:org:create -f config/project-scratch-def.json -a [YOUR_ALIAS_HERE] -d 1
     * That will create the scratch org with a lot of features enable, please take a look on [that project file](config/project-scratch-def.json) to get familiar
     * The "-d" parameter, tells the amount of days that you want your scratch organization last
     * Example:
@@ -61,8 +86,9 @@ To work with Scratch orgs, you will need:
         ```
         sfdx force:config:set defaultusername=tmpB2b
         ```
-1. Deploy the necessary metadada before push (please see the [All Organizations](#All-org-additional-settings) under "Deploying the additional settings" section);
-1. Deploy the aditional things with the script (please see the [Scripting deploying](#All-org-script-deploy) under "Deploying the additional settings" section);
+1. Deploy the things with the script (please see the [Scripting deploying](#All-org-script-deploy) under "Deploying the additional settings" section);
+    * ./scripts/bash/createDigitalExpSetupStore.sh [YOUR_SHOP_NAME_HERE]
+    * Example:
     ```
     ./scripts/bash/createDigitalExpSetupStore.sh Shop
     ```
@@ -70,7 +96,7 @@ To work with Scratch orgs, you will need:
 
 ### All Organizations
 
-* [Authorize the organization](#all-org-authorize)
+* #### Authorize the organization
     * You can do that pressing the "ctrl + shift + p" keys in VSCode, or;
     * Use the commands below:
         * Example to authorize set a devhubuser:
@@ -92,8 +118,9 @@ To work with Scratch orgs, you will need:
             ```        
         * If you do not want to set that org as your default to the project, just suppress the parameter "-s"
 
-* [Deploying the additional settings](#all-org-additional-settings)
-    * Some things like Currency, Order, Order management, etc,  needs to be enable with metadata changes, to do that, we have created the [manifest/package-AdditionalSettings.xml](manifest/package-AdditionalSettings.xml) file.
+* #### Deploying the additional settings
+    * This configuration is automatically applied through the **"createDigitalExpSetupStore.sh"** script file
+    * Some things like Currency, Order, Order management, etc,  needs to be enable with metadata changes, to do that, we have created the [manifest/package-01additionalSettings.xml](manifest/package-01additionalSettings.xml) file.
 
         Please, feel free to uncomment the necessary setting you may need in your deployment.
     * With the things do you need, you can deploy into you environment with the following commands:
@@ -103,7 +130,7 @@ To work with Scratch orgs, you will need:
         1. Example
             ```
             rm -rf Deploy
-            sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-AdditionalSettings.xml
+            sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01additionalSettings.xml
             sfdx force:mdapi:deploy -u tmpB2b -d Deploy/ -w -1 
             ```        
 * [Scripting deploying](#all-org-script-deploy)

@@ -17,7 +17,7 @@
 
 if [ -z "$1" ]
 then
-	echo "You need to specify the name of the store."
+	echo "You need to specify the the store name to create it."
 	exit 0
 fi
 
@@ -180,7 +180,7 @@ mv -f $tmpfile $networkMetaFile
 # Import Products and related data
 # Get new Buyer Group Name
 echo "4. Importing products and the other things"
-buyergroupName=$(bash ./scripts/bash/import_products.sh $1 | tail -n 1)
+buyergroupName=$(bash ./scripts/bash/importProductSample.sh $1 | tail -n 1)
 
 
 # If notnot working with scratch orgs, comment the code below

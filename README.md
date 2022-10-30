@@ -5,7 +5,7 @@ This repository is supposed to help with some necessary procedures to easily cre
 
 Please, take a look on this **video demo** (better in playback speed 1.5)!
 
-[![Execution example](images/b2bSimpleTemplate.png)](https://drive.google.com/file/d/1Avtl9hj3Bg9139RobQa3qhhhgOwdMam1/view?usp=share_link)
+[![Execution example](images/b2bSimpleTemplate.png)](https://youtu.be/NchUIRcGwAU)
 
 
 Probably you may think: **from where they got those ideas?**

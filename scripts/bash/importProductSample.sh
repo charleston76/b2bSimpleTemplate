@@ -34,12 +34,6 @@ else
 	checkExistingBuyergroupID=`sfdx force:data:soql:query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '$newbuyergroupname'" -r csv |tail -n +2`
 	echo $checkExistingBuyergroupID
 	
-	if [ "$checkExistingBuyergroupID" == "" ]
-	then
-		echo "Would create, but it is not creating the new Buyer group"
-		#sfdx force:data:record:create -s BuyerGroup -v "Name='$newbuyergroupname' Description='$1'"
-	fi
-
 	sed -e "s/\"Name\": \"PutBuyerGroupHere\"/\"Name\": \"${newbuyergroupname}\"/g;s/\"Description\": \"PutStoreNameHere\"/\"Description\": \"${1}\"/g" scripts/json/BuyerGroups-template.json > scripts/json/BuyerGroups.json
 
 	# Determine if Product-less insert or Product insert is needed.

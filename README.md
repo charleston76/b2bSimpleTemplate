@@ -1,15 +1,51 @@
-This is the workspace
-SELECT Id, Name, Description, DefaultLanguage FROM ManagedContentSpace
-
-https://developer.salesforce.com/docs/atlas.en-us.238.0.object_reference.meta/object_reference/sforce_api_objects_managedcontentinfo.htm
-
 
 https://developer.salesforce.com/blogs/2019/11/content-delivery-api-to-extend-or-integrate-content
-
 https://developer.salesforce.com/blogs/2019/11/use-the-cms-app-to-create-content
 
-ManagedContentInfo
-https://developer.salesforce.com/docs/atlas.en-us.238.0.object_reference.meta/object_reference/sforce_api_objects_managedcontentinfo.htm
+Get the content workspace I need
+SELECT Id, Name, Description FROM ManagedContentSpace
+
+With that ID get managed content existing
+SELECT Id, ContentKey, AuthoredManagedContentSpaceId FROM ManagedContent WHERE AuthoredManagedContentSpaceId = '0Zu8b0000011G7XCAU'
+
+Exemplo MCZOGM2UFPKJAQJJEWE4AH63CCPY
+ID 20Y8b000000ksodEAA
+
+List<String> haveValue = new List<String>{
+'title','NameField'};
+String communityId = '0DB8b00000112jDGAQ';
+String contentType = '';
+String managedContentIds_str = '20Y8b000000ksodEAA';
+String topicNames_str = '';
+String language = '';
+//List<ConnectApi.ManagedContentVersion> lstReturn = ManagedContentControllerForLex.getMContent(contentType, managedContentIds_str, topicNames_str, language);
+List<ConnectApi.ManagedContentVersion> lstReturn = ManagedContentControllerForLex.getMContent(contentType, managedContentIds_str, topicNames_str, language);
+
+for (ConnectApi.ManagedContentVersion rowVersion : lstReturn){
+    system.debug('rowVersion ' + rowVersion);
+    system.debug('rowVersion.contentKey ' + rowVersion.contentKey);
+    system.debug('rowVersion.title ' + rowVersion.title);
+    system.debug('rowVersion.managedContentId ' + rowVersion.managedContentId);
+
+	Map<String, ConnectApi.ManagedContentNodeValue> mapNodes = rowVersion.contentNodes;
+    //system.debug('mapNodes ' + mapNodes);
+    for (String keySet : mapNodes.keyset()){
+        //system.debug('keySet ' + keySet);
+            
+        system.debug('mapNodes.get(keySet) ' + mapNodes.get(keySet));
+        ConnectApi.ManagedContentNodeValue singleValue =  mapNodes.get(keySet);
+        //system.debug('haveValue.contains(keySet) ' + haveValue.contains(keySet));
+        if (! haveValue.contains(keySet)){
+        	system.debug('singleValue ' + singleValue);
+            //ConnectApi.ManagedContentTextNodeValue value = (ConnectApi.ManagedContentTextNodeValue) singleValue;
+            ConnectApi.ManagedContentMediaSourceNodeValue value = (ConnectApi.ManagedContentMediaSourceNodeValue) singleValue;
+            system.debug('value.url ' + value.url);
+            //system.debug('singleValue.nodeType ' + singleValue.nodeType);
+            //system.debug('singleValue.value ' + singleValue.value);
+        } 
+
+    }
+}
 
 
 You need to create the CMS workspace manually
@@ -20,16 +56,6 @@ https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_clas
 
 sfdx force:data:tree:import -f scripts/json/productMedia.json 
 
-
-/services/data/v54.0/connect/communities
-
-
-Checks an specific one (First B2B Test da kiridinha):
-	/services/data/v54.0/connect/communities/communityId
-
-Search the content by the channel ID 
-    /services/data/v54.0/connect/cms/delivery/channels/
-    /services/data/v54.0/connect/cms/delivery/channels/0ap8b0000011GJCAA2/contents/search?queryTerm=ss
 
 Probably I can use it
     https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_cms_contents.htm

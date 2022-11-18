@@ -15,6 +15,19 @@
 # - activate the store
 # - publish your store so that the changes are reflected
 
+function echo_attention() {
+  local green='\033[0;32m'
+  local no_color='\033[0m'
+  echo -e "${green}$1${no_color}"
+}
+
+function just_wait_a_litte() {
+	local green='\033[0;32m'
+	local no_color='\033[0m'
+	echo -e "${green}Just waiting a little to conitnue${no_color}"
+	sleep 5
+}
+
 if [ -z "$1" ]
 then
 	echo "You need to specify the name of the storefront to create it."
@@ -188,10 +201,19 @@ buyergroupName=$(bash ./scripts/bash/importProductSample.sh $1 | tail -n 1)
 echo "5. Mapping Admin User to Role."
 ceoID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'CEO'" -r csv |tail -n +2`
 sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminRoleScriptCreation' DeveloperName='AdminRoleScriptCreation' RollupDescription='AdminRoleScriptCreation' "
+# after creating, just wait a little to get the id back
+just_wait_a_litte
 newRoleID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
+# after creating, just wait a little to get the id back
+just_wait_a_litte
 username=`sfdx force:user:display | grep "Username" | sed 's/Username//g;s/^[[:space:]]*//g'`
-
+# after creating, just wait a little to get the id back
+just_wait_a_litte
 sfdx force:data:record:update -s User -v "UserRoleId='$newRoleID'" -w "Username='$username'"
+
+echo_attention "Deploying the profile to create the user"
+sfdx force:source:deploy -p ./force-app/main/default/profiles/Buyer\ Profile.profile-meta.xml
+
 
 # Create Buyer User. Go to config/buyer-user-def.json to change name, email and alias.
 echo "6. Creating Buyer User with associated Contact and Account."
@@ -231,7 +253,6 @@ else
 fi
 
 echo "Setup Guest Browsing."
-echo "Checking if B2B or B2C"
 storeType=`sfdx force:data:soql:query --query \ "SELECT Type FROM WebStore WHERE Name = '${communityNetworkName}'" -r csv |tail -n +2`
 echo "Store Type is $storeType"
 # Originally it just was doing to b2c... but...
@@ -262,7 +283,7 @@ rm package-retrieve.xml
 
 echo "Publishing the community."
 sfdx force:community:publish -n "$communityNetworkName"
-sleep 10s
+sleep 10
 
 echo "Creating search index."
 sfdx 1commerce:search:start -n "$communityNetworkName"

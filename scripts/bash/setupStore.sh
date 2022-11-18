@@ -17,7 +17,7 @@
 
 if [ -z "$1" ]
 then
-	echo "You need to specify the the store name to create it."
+	echo "You need to specify the name of the storefront to create it."
 	exit 0
 fi
 
@@ -208,7 +208,7 @@ echo "Making Account a Buyer Account."
 sfdx force:data:record:create -s Account -v "Name='$buyerusername'"
 
 accountID=`sfdx force:data:soql:query --query \ "SELECT Id FROM Account WHERE Name LIKE '${buyerusername}' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
-sfdx force:data:record:create -s BuyerAccount -v "BuyerId='$accountID' Name='BuyerAccountFromQuickstart' isActive=true"
+sfdx force:data:record:create -s BuyerAccount -v "BuyerId='$accountID' Name='$buyerusername' isActive=true"
 
 # Assign Account to Buyer Group
 echo "Assigning Buyer Account to Buyer Group."
@@ -234,11 +234,12 @@ echo "Setup Guest Browsing."
 echo "Checking if B2B or B2C"
 storeType=`sfdx force:data:soql:query --query \ "SELECT Type FROM WebStore WHERE Name = '${communityNetworkName}'" -r csv |tail -n +2`
 echo "Store Type is $storeType"
-# Update Guest Profile with required CRUD and FLS
-if [ "$storeType" = "B2C" ]
-then
+# Originally it just was doing to b2c... but...
+# # Update Guest Profile with required CRUD and FLS
+# if [ "$storeType" = "B2C" ]
+# then
 	sh ./scripts/bash/b2bGuestBrowsing.sh $communityNetworkName $buyergroupName true
-fi	
+# fi	
 #############################
 #   Deploy Updated Store    #
 #############################
@@ -269,9 +270,10 @@ sfdx 1commerce:search:start -n "$communityNetworkName"
 
 echo "QUICK START COMPLETE!"
 
-# We don't need generate this user thing
-# sfdx force:user:password:generate -o ${buyerusername}
-# echo "Use this buyer user to log in to the store:"
-# sfdx force:user:display -u ${buyerusername}
+# Now, I get the user name there in the file, to create the user
+contactUsername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
+sfdx force:user:password:generate -o ${contactUsername}
+echo "Use this buyer user to log in to the store:"
+sfdx force:user:display -u ${contactUsername}
 
 echo "NOW WE REALLY ARE DONE!"

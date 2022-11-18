@@ -34,7 +34,7 @@ sfdx 1commerce:search:start -n "$communityNetworkName"
 
 echo "Publishing the community."
 sfdx force:community:publish -n "$communityNetworkName"
-sleep 10s
+sleep 10
 
 echo
 echo
@@ -42,4 +42,3 @@ echo "Done! Guest Buyer Access is setup!"
 echo "Don't forget to activate your store manually in the environment"
 echo
 echo
-

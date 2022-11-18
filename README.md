@@ -1,3 +1,42 @@
+This is the workspace
+SELECT Id, Name, Description, DefaultLanguage FROM ManagedContentSpace
+
+https://developer.salesforce.com/docs/atlas.en-us.238.0.object_reference.meta/object_reference/sforce_api_objects_managedcontentinfo.htm
+
+
+https://developer.salesforce.com/blogs/2019/11/content-delivery-api-to-extend-or-integrate-content
+
+https://developer.salesforce.com/blogs/2019/11/use-the-cms-app-to-create-content
+
+ManagedContentInfo
+https://developer.salesforce.com/docs/atlas.en-us.238.0.object_reference.meta/object_reference/sforce_api_objects_managedcontentinfo.htm
+
+
+You need to create the CMS workspace manually
+    Add CMS Workspace and let the search enable (on that cms channel, click on Edit in ddl button, click Search > "Enable Search" )
+    Will possible to do that /services/data/v54.0/connect/cms/delivery/channels/0ap8b0000011GJCAA2/contents/search?queryTerm=ss
+
+https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_classes_connect_api.htm
+
+sfdx force:data:tree:import -f scripts/json/productMedia.json 
+
+
+/services/data/v54.0/connect/communities
+
+
+Checks an specific one (First B2B Test da kiridinha):
+	/services/data/v54.0/connect/communities/communityId
+
+Search the content by the channel ID 
+    /services/data/v54.0/connect/cms/delivery/channels/
+    /services/data/v54.0/connect/cms/delivery/channels/0ap8b0000011GJCAA2/contents/search?queryTerm=ss
+
+Probably I can use it
+    https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_cms_contents.htm
+
+Import the media to looks pretty
+    https://help.salesforce.com/s/articleView?id=sf.cms_import_content_json.htm&type=5
+
 # Well, here we are!
 
 This repository is supposed to help with some necessary procedures to easily create a B2B scratch, developer, sandbox or even a production organization environment, of course, respecting some necessary steps, licenses and configurations to achieve that.

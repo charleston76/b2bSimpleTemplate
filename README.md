@@ -78,6 +78,60 @@ That will do all the configuration needed to achieve:
 * Create the digital experience;
 * Create the store front (with sample products, buyer group, entitlement policy, etc);
 
+## Manual steps
+
+In this current version, we are creating the B2B Commerce in a scratch organization, and uploading [some products to there](scripts/json/Product2s.json).
+
+Nevertheless, that upload doesn't put some pretty images there... for now, to achieve that, we'll perform the manual steps below...
+
+1. Configure the CMS tabs (Setup > Profile > System Administrator)
+    * Set as default on CMS Channels, CMS Workspaces and Commerce Setup
+
+        ![CMS Profile](images/b2bCMSProfile.png)
+    * If it is not showing as above, probably you'll need deactivate the "Enhanced Profile User Interface" in the "User Management Settings"
+1. Create the CMS Workspace (App launcher > CMS Workspaces > Add Workspace)
+
+    To have the scripts really running fine, follow the name convention bellow
+
+    * [YOUR_STORE_NAME] Workspace
+
+        ![CMS Workspace](images/b2bCMSWorkspace.png)
+    * Add your store name as a channel
+    
+        ![CMS Channel](images/b2bCMSChannelpng.png)
+    * Follow the wizard and let it created.
+
+1. Import the media to looks pretty
+
+    Here we'll use [this example file](./scripts/json/productMedia.json.zip) that is [the same extrated here](./scripts/json/productMedia.json).
+
+    * Click on import content
+    
+        ![CMS Import content](images/b2bCMSImport1.png)
+    * Select the file
+    
+        ![CMS select file](images/b2bCMSImport2.png)
+    * Check the "Publish content after import" option and import
+
+        ![CMS select file](images/b2bCMSImport3.png)
+
+    It will take some seconds... but you'll receive an email when it has finished, then refresh your workspace and check the images there:
+        ![CMS done](images/b2bCMSImport4.png)
+
+1. With the images and the products there, you'll run the script bellow, to put the things together:
+    * ./scripts/bash/importProductMedia.sh [YOUR_SHOP_NAME_HERE]
+    * Example:
+        ```
+        ./scripts/bash/importProductMedia.sh Shop
+        ```
+
+        ![CMS relating products](images/b2bCMSImport5.png)
+
+1. Now you can see your produts related with the CMS images:
+
+    ![Product image](images/b2bCMSImport6.png)
+
+
 ### Scratch org configuration
 
 
@@ -147,53 +201,4 @@ Coming soon new updates, stay tuned
             sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01additionalSettings.xml
             sfdx force:mdapi:deploy -d Deploy/ -w -1 
             ```        
-
-## Manual steps
-
-In this current version, we are creating the B2B Commerce in a scratch organization, and uploading [some products to there](scripts/json/Product2s.json).
-
-Nevertheless, that upload doesn't put some pretty images there... for now, to achieve that, we'll perform the manual steps below...
-
-1. Configure the CMS tabs (Setup > Profile > System Administrator)
-    * Set as default on CMS Channels, CMS Workspaces and Commerce Setup
-
-        ![CMS Profile](images/b2bCMSProfile.png)
-    * If it is not showing as above, probably you'll need deactivate the "Enhanced Profile User Interface" in the "User Management Settings"
-1. Create the CMS Workspace (App launcher > CMS Workspaces > Add Workspace)
-
-    To have the scripts really running fine, follow the name convention bellow
-
-    * [YOUR_STORE_NAME] Workspace
-
-        ![CMS Workspace](images/b2bCMSWorkspace.png)
-    * Add your store name as a channel
-    
-        ![CMS Channel](images/b2bCMSChannelpng.png)
-    * Follow the wizard and let it created.
-
-1. Import the media to looks pretty
-
-    Here we'll use [this example file](./scripts/json/productMedia.json.zip) that is [the same extrated here](./scripts/json/productMedia.json).
-
-    * Click on import content
-    
-        ![CMS Import content](images/b2bCMSImport1.png)
-    * Select the file
-    
-        ![CMS select file](images/b2bCMSImport2.png)
-    * Check the "Publish content after import" option and import
-
-        ![CMS select file](images/b2bCMSImport3.png)
-
-It will take some seconds... but you'll receive an email when it has finished, then refresh your workspace and check the images there:
-    ![CMS done](images/b2bCMSImport4.png)
-
-1. with the images and the products there, you'll run the script bellow, to put the things together:
-* ./scripts/bash/importProductMedia.sh [YOUR_SHOP_NAME_HERE]
-* Example:
-    ```
-     ./scripts/bash/importProductMedia.sh Shop
-    ```
-
-    ![CMS relating products](images/b2bCMSImport5.png)
 

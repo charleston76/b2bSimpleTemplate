@@ -21,7 +21,7 @@ buyergroupName=$2
 
 # Enable Guest Browsing for WebStore and create Guest Buyer Profile. 
 # Assign to Buyer Group of choice.
-sfdx force:data:record:update -s WebStore -v "OptionsGuestBrowsingEnabled='true'" -w "Name='$communityNetworkName'"
+sfdx force:data:record:update -s WebStore -w "Name='$communityNetworkName'" -v "OptionsGuestBrowsingEnabled='true'" 
 guestBuyerProfileId=`sfdx force:data:soql:query --query \ "SELECT GuestBuyerProfileId FROM WebStore WHERE Name = '$communityNetworkName'" -r csv |tail -n +2`
 buyergroupID=`sfdx force:data:soql:query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '${buyergroupName}'" -r csv |tail -n +2`
 sfdx force:data:record:create -s BuyerGroupMember -v "BuyerId='$guestBuyerProfileId' BuyerGroupId='$buyergroupID'"

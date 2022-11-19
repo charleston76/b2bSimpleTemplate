@@ -211,7 +211,7 @@ username=`sfdx force:user:display | grep "Username" | sed 's/Username//g;s/^[[:s
 echo_attention "username $username"
 # after creating, just wait a little to get the id back
 just_wait_a_litte
-sfdx force:data:record:update -s User -v "UserRoleId='$newRoleID'" -w "Username='$username'"
+sfdx force:data:record:update -s User -w "Username='$username'" -v "UserRoleId='$newRoleID'" 
 
 # Putted on the manifest to deploy there
 # echo_attention "Deploying the profile to create the user"
@@ -255,9 +255,9 @@ sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupI
 # Add the contact
 contactUserId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$contactUsername'" -r csv |tail -n +2`
 echo_attention "Creating the contact $contactUsername user Id $contactUserId"
-sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername' "
+sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername'"
 contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
-sfdx force:data:record:update -s User -v "ContactId='$contactId'" -w "Username='$username'"
+sfdx force:data:record:update -s User -w "Username='$username'" -v "ContactId='$contactId'" 
 
 # Add Contact Point Addresses to the buyer account associated with the buyer user.
 # The account will have 2 Shipping and 2 billing addresses associated to it.

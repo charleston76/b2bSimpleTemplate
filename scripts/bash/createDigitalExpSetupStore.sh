@@ -71,7 +71,7 @@ echo_attention "Store found with id ${storeId}"
 echo ""
 
 # But we need it in an sandbox or productive orgs
-echo_attention "Doing the first deployment"
+echo_attention "Doing the second deployment"
 rm -rf Deploy
 sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-02mainObjects.xml
 

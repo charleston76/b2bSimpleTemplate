@@ -16,10 +16,6 @@
         <members>*</members>
         <name>Flow</name>
     </types>
-    <!-- types>
-	    <members>*</members>
-	    <name>SharingRules</name>
-    </types -->
     <types>
 	    <members>*</members>
 	    <name>NavigationMenu</name>

@@ -3,95 +3,58 @@ https://developer.salesforce.com/blogs/2019/11/content-delivery-api-to-extend-or
 https://developer.salesforce.com/blogs/2019/11/use-the-cms-app-to-create-content
 
 
-Get the community ID
-    select Id, Name from Network where Name = 'tmpNew'
-    0DB8G0000004UxAWAU
 
 
-Get the content workspace I need
-    SELECT Id, Name, Description FROM ManagedContentSpace
-    where Name = 'tmpNew Workspace'
 
-With that ID get managed content existing
-    SELECT Id, ContentKey, AuthoredManagedContentSpaceId FROM ManagedContent WHERE AuthoredManagedContentSpaceId = '0Zu8G0000008PROSA2'
+## Manual steps
 
-Exemplo MC6QKYWRTIW5FXDL6J5BU2XUHJB4
-    ID 20Y8G000000GpILUA0
+In this current version, we are creating the B2B Commerce in a scratch organization, and uploading [some products to there](scripts/json/Product2s.json).
 
-Check the important product media groups to this importation
-    SELECT Id, Name, DeveloperName, Description FROM ElectronicMediaGroup
-    WHERE DeveloperName IN ('productDetailImage','productListImage') 
-    ORDER BY DeveloperName
+Nevertheless, that upload doesn't put some pretty images there... for now, to achieve that, we'll perform the manual steps below...
 
-    2mg8G0000007cKpQAI Product Detail Images
-    2mg8G0000007cKqQAI Product List Image
+1. Configure the CMS tabs (Setup > Profile > System Administrator)
+    * Set as default on CMS Channels, CMS Workspaces and Commerce Setup
 
-That is the product media file
-    SELECT Id, Name, ProductId, ElectronicMediaId, SortOrder, ElectronicMediaGroupId FROM ProductMedia
+        ![CMS Profile](images/b2bCMSProfile.png)
+    * If it is not showing as above, probably you'll need deactivate the "Enhanced Profile User Interface" in the "User Management Settings"
+1. Create the CMS Workspace (App launcher > CMS Workspaces > Add Workspace)
 
-    ProductMedia objInsert = new ProductMedia(
-        ProductId = '01t8G000001jc9VQAQ',
-        ElectronicMediaId = '20Y8G000000GpILUA0',
-        ElectronicMediaGroupId = '2mg8G0000007cKpQAI'
-    );
+    To have the scripts really running fine, follow the name convention bellow
 
-    insert objInsert;
+    * [YOUR_STORE_NAME] Workspace
 
-    ProductMedia objInsert = new ProductMedia(
-        ProductId = '01t8G000001jc9VQAQ',
-        ElectronicMediaId = '20Y8G000000GpILUA0',
-        ElectronicMediaGroupId = '2mg8G0000007cKqQAI'
-    );
+        ![CMS Workspace](images/b2bCMSWorkspace.png)
+    * Add your store name as a channel
+    
+        ![CMS Channel](images/b2bCMSChannelpng.png)
+    * Follow the wizard and let it created.
 
-    insert objInsert;    
+1. Import the media to looks pretty
 
+    Here we'll use [this example file](./scripts/json/productMedia.json.zip) that is [the same extrated here](./scripts/json/productMedia.json).
 
-List<String> haveValue = new List<String>{
-'title','NameField'};
-String communityId = '0DB8G0000004UxAWAU';
-String contentType = '';
-String managedContentIds_str = '20Y8G000000GpILUA0';
-String topicNames_str = '';
-String language = '';
-List<ConnectApi.ManagedContentVersion> lstReturn = ManagedContentController.getMContent(communityId, contentType, managedContentIds_str, topicNames_str, language);
+    * Click on import content
+    
+        ![CMS Import content](images/b2bCMSImport1.png)
+    * Select the file
+    
+        ![CMS select file](images/b2bCMSImport2.png)
+    * Check the "Publish content after import" option and import
 
-for (ConnectApi.ManagedContentVersion rowVersion : lstReturn){
-    system.debug('rowVersion ' + rowVersion);
-    system.debug('rowVersion.contentKey ' + rowVersion.contentKey);
-    system.debug('rowVersion.title ' + rowVersion.title);
-    system.debug('rowVersion.managedContentId ' + rowVersion.managedContentId);
+        ![CMS select file](images/b2bCMSImport3.png)
 
-	Map<String, ConnectApi.ManagedContentNodeValue> mapNodes = rowVersion.contentNodes;
-    system.debug('mapNodes ' + mapNodes);
-}
+It will take some seconds... but you'll receive an email when it has finished, then refresh your workspace and check the images there:
+    ![CMS done](images/b2bCMSImport4.png)
 
-You need to create the CMS workspace manually
-    Enable the followgin tabs in the System Administrator profile:
+1. with the images and the products there, you'll run the script bellow, to put the things together:
+* ./scripts/bash/importProductMedia.sh [YOUR_SHOP_NAME_HERE]
+* Example:
+    ```
+     ./scripts/bash/importProductMedia.sh Shop
+    ```
 
-    Remark you'll not get do that with the enhanced profile advated
-    [your_STORE_NAME] Workshop
-    Set your store front as a channel there
+    ![CMS relating products](images/b2bCMSImport5.png)
 
-Upload the images to your store front.
-Here we'll use [this example file](./scripts/json/productMedia.json.zip) that is [the same extrated here](./scripts/json/productMedia.json), but you need to use the zip to easy upload that on your environment.
-
-    In the CMS home page click on "Import Content" and select your file:
-
-    And mark the check-box to "Publish content after import"
-
-    Add CMS Workspace and let the search enable (on that cms channel, click on Edit in ddl button, click Search > "Enable Search" )
-    Will possible to do that /services/data/v54.0/connect/cms/delivery/channels/0ap8b0000011GJCAA2/contents/search?queryTerm=ss
-
-https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_classes_connect_api.htm
-
-sfdx force:data:tree:import -f scripts/json/productMedia.json 
-
-
-Probably I can use it
-    https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_cms_contents.htm
-
-Import the media to looks pretty
-    https://help.salesforce.com/s/articleView?id=sf.cms_import_content_json.htm&type=5
 
 # Well, here we are!
 
@@ -109,6 +72,7 @@ So simple:
 1. [B2B Commerce on Lightning Experience Set Up Guide](https://resources.docs.salesforce.com/latest/latest/en-us/sfdc/pdf/b2b_standalone_setup.pdf)  a free official salesforce material;
 1. [Github b2b-commerce-on-lightning-quickstart](https://github.com/forcedotcom/b2b-commerce-on-lightning-quickstart), another oficial free material provided by salesforce;
 1. [Github MultiLevelNavigationMenus](https://github.com/SalesforceLabs/MultiLevelNavigationMenus), guess what? More free salesforce material;
+1. [JSON File Format for Content in Salesforce CMS](https://help.salesforce.com/s/articleView?id=sf.cms_import_content_json.htm&type=5)
 1. Generic ideas gathered meanwhile working in different projects around the world
 
 **Spoiler alert**: That multiLevel navigation is not implemented on this version yet... but it is very cool, take a look there.

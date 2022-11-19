@@ -1,11 +1,15 @@
 // Find the relation ship between the product and images
 // and creates the media type thing
 // This script just can be ran after the image importation, ensuring the relationship between the sku and the image title
+String communityName = 'YOUR_COMMUNITY_NAME_HERE';
+String communityId = 'YOUR_COMMUNITY_ID_HERE';
+String webStoreId = 'YOUR_WEBSTORE_ID_HERE';
+
 String contentType = '';
 String language = 'en_US';
 Integer pageSize = 100;
 Integer pageNumber = 0;
-String communityName = 'tmpNew';
+
 String workspaceName = communityName + ' Workspace';
 String productDetailImage = 'productDetailImage';
 String productListImage = 'productListImage';
@@ -27,19 +31,8 @@ for (ElectronicMediaGroup rowGroup : [
     mpaMediaGroupId.put(rowGroup.DeveloperName, rowGroup.Id);
 }
 
-System.debug('mpaMediaGroupId ' + mpaMediaGroupId);
-
-String communityId = String.valueOf([
-    SELECT Id from Network 
-    WHERE Name =:communityName 
-]?.Id);
-
-String webStoreId =  String.valueOf([
-    SELECT WebStoreId FROM WebStoreNetwork
-    WHERE NetworkId =:communityId 
-]?.WebStoreId);
-
-System.debug('community ' + communityName + ' - ' + communityId + ' webStoreId ' + webStoreId);
+// System.debug('mpaMediaGroupId ' + mpaMediaGroupId);
+// System.debug('community ' + communityName + ' - ' + communityId + ' webStoreId ' + webStoreId);
 
 for (WebStoreBuyerGroup rowContent : [
     SELECT BuyerGroupId FROM WebStoreBuyerGroup
@@ -49,7 +42,7 @@ for (WebStoreBuyerGroup rowContent : [
     buyerGroupIds.add(rowContent.BuyerGroupId);
 }
 
-System.debug('buyerGroupIds ' + buyerGroupIds);
+// System.debug('buyerGroupIds ' + buyerGroupIds);
 
 for (CommerceEntitlementBuyerGroup rowEntitlement : [
     SELECT PolicyId FROM CommerceEntitlementBuyerGroup
@@ -59,7 +52,7 @@ for (CommerceEntitlementBuyerGroup rowEntitlement : [
     entitlementPolicyIds.add(rowEntitlement.PolicyId);
 }
 
-System.debug('entitlementPolicyIds ' + entitlementPolicyIds);
+// System.debug('entitlementPolicyIds ' + entitlementPolicyIds);
 
 String workspaceId = String.valueOf([
     SELECT Id, Name FROM ManagedContentSpace
@@ -102,7 +95,7 @@ for (CommerceEntitlementProduct objRow : [
     entitlementProductIds.add(objRow.ProductId);
 }
 
-System.debug('entitlementProductIds ' + entitlementProductIds );
+// System.debug('entitlementProductIds ' + entitlementProductIds );
 
 
 // Create a map to related the images by the StockKeepingUnit and the title
@@ -117,7 +110,7 @@ for (Product2 objRow : [
     mapProduct.put(objRow.StockKeepingUnit, objRow);
 }
 
-System.debug('mapProduct ' + mapProduct );
+// System.debug('mapProduct ' + mapProduct );
 
 // Verify the products and try to findout the images in the map
 for (String stockKeepingUnit : mapProduct.keySet()){
@@ -146,6 +139,6 @@ for (String stockKeepingUnit : mapProduct.keySet()){
     }
 }
 
-System.debug('countMatchesFound ' + countMatchesFound );
+// System.debug('countMatchesFound ' + countMatchesFound );
 System.debug('newProductMedia.size() ' + newProductMedia.size() );
 if (newProductMedia.size() > 0) insert newProductMedia;

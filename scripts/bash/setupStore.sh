@@ -187,7 +187,7 @@ mv -f $tmpfile $checkoutMetaFile
 echo "3. Updating members list and activating community."
 networkMetaFile="experience-bundle-package/unpackaged/networks/$communityNetworkName".network
 tmpfile=$(mktemp)
-sed "s/<networkMemberGroups>/<networkMemberGroups><profile>buyer_user_profile_from_quickstart<\/profile>/g;s/<status>.*/<status>Live<\/status>/g" $networkMetaFile > $tmpfile
+sed "s/<networkMemberGroups>/<networkMemberGroups><profile>Buyer_Profile<\/profile>/g;s/<status>.*/<status>Live<\/status>/g" $networkMetaFile > $tmpfile
 mv -f $tmpfile $networkMetaFile
 
 # Import Products and related data
@@ -204,20 +204,35 @@ sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminR
 # after creating, just wait a little to get the id back
 just_wait_a_litte
 newRoleID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
+echo_attention "newRoleID $newRoleID"
 # after creating, just wait a little to get the id back
 just_wait_a_litte
 username=`sfdx force:user:display | grep "Username" | sed 's/Username//g;s/^[[:space:]]*//g'`
+echo_attention "username $username"
 # after creating, just wait a little to get the id back
 just_wait_a_litte
 sfdx force:data:record:update -s User -v "UserRoleId='$newRoleID'" -w "Username='$username'"
 
-echo_attention "Deploying the profile to create the user"
-sfdx force:source:deploy -p ./force-app/main/default/profiles/Buyer\ Profile.profile-meta.xml
-
+# Putted on the manifest to deploy there
+# echo_attention "Deploying the profile to create the user"
+# sfdx force:source:deploy -p ./force-app/main/default/profiles/Buyer\ Profile.profile-meta.xml
 
 # Create Buyer User. Go to config/buyer-user-def.json to change name, email and alias.
 echo "6. Creating Buyer User with associated Contact and Account."
-sfdx force:user:create -f scripts/json/buyer-user-def.json
+
+echo_attention "Creating a folder to copy json file"
+mkdir setupB2b
+
+# Replace the name there and put with the scratch org name
+# sfdx force:user:create -f scripts/json/buyer-user-def.json
+sed -E "s/YOUR_SCRATCH_NAME/$communityNetworkName/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
+sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
+# Get the Contact user name
+contactUsername=`grep -i '"Username":' setupB2b/tmpBuyerUserDef.json|cut -d "\"" -f 4`
+echo_attention "contactUsername $contactUsername"
+echo_attention "Removing the setupB2b folder"
+rm -rf setupB2b
+
 # The code below definitely works, but I prefere define the name with the store name
 # buyerusername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
 buyerusername="buyer Account ${1}"
@@ -236,6 +251,13 @@ sfdx force:data:record:create -s BuyerAccount -v "BuyerId='$accountID' Name='$bu
 echo "Assigning Buyer Account to Buyer Group."
 buyergroupID=`sfdx force:data:soql:query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '${buyergroupName}'" -r csv |tail -n +2`
 sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupID' BuyerId='$accountID'"
+
+# Add the contact
+contactUserId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$contactUsername'" -r csv |tail -n +2`
+echo_attention "Creating the contact $contactUsername user Id $contactUserId"
+sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername' "
+contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
+sfdx force:data:record:update -s User -v "ContactId='$contactId'" -w "Username='$username'"
 
 # Add Contact Point Addresses to the buyer account associated with the buyer user.
 # The account will have 2 Shipping and 2 billing addresses associated to it.
@@ -291,10 +313,10 @@ sfdx 1commerce:search:start -n "$communityNetworkName"
 
 echo "QUICK START COMPLETE!"
 
-# Now, I get the user name there in the file, to create the user
-contactUsername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
-sfdx force:user:password:generate -o ${contactUsername}
-echo "Use this buyer user to log in to the store:"
-sfdx force:user:display -u ${contactUsername}
+# # Now, I get the user name there in the file, to create the user
+# contactUsername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
+# sfdx force:user:password:generate -o ${contactUsername}
+# echo "Use this buyer user to log in to the store:"
+# sfdx force:user:display -u ${contactUsername}
 
-echo "NOW WE REALLY ARE DONE!"
+# echo "NOW WE REALLY ARE DONE!"

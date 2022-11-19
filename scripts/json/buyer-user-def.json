@@ -1,5 +1,5 @@
 {
-    "username": "buyerContact@scratch.org",
+    "username": "buyerContact@YOUR_SCRATCH_NAME.scratch.org",
     "LastName": "Scratch",
     "Email": "youremail@example.com",
     "Alias": "buyer",
@@ -7,5 +7,5 @@
     "LocaleSidKey": "en_US",
     "EmailEncodingKey": "UTF-8",
     "LanguageLocaleKey": "en_US",
-    "profileName": "Buyer Profile"
+    "profileName": "Buyer_Profile"
 }

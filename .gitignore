@@ -54,6 +54,7 @@ deploy-options.json
 # Deployment path
 Deploy/
 experience-bundle-package/
+setupB2b/
 
 # Node version
 .nvmrc

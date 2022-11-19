@@ -21,7 +21,7 @@ then
 fi
 
 storename=$1
-echo_attention "Check if the store $storename already exists"
+echo_attention "Checking if the store $storename already exists"
 storeId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
 
 if [ -z "$storeId" ]
@@ -32,20 +32,29 @@ fi
 
 echo_attention "Store front id: $storeId found to $storename"
 
-# I'm still working on it
-# ./scripts/bash/importProductMedia.sh Shop
+echo_attention "Checking if community $storename already exists"
+communityId=`sfdx force:data:soql:query -q "SELECT Id from Network WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
 
+if [ -z "$communityId" ]
+then
+    echo_attention "This community name $storename doesn't exist"
+    exit_error_message "The setup will stop."
+fi
 
-# productDetailImageGroup
-# productListImageGroup
+echo_attention "community id: $communityId found to $storename"
 
+echo_attention "Creating a folder to copy the apex script file"
+mkdir setupB2b
 
-# SELECT Id, Name FROM ElectronicMediaGroup
+# Replace the names of the components that will be retrieved.
+sed -E "s/YOUR_COMMUNITY_NAME_HERE/$storename/g;s/YOUR_COMMUNITY_ID_HERE/$communityId/g;s/YOUR_WEBSTORE_ID_HERE/$storeId/g" scripts/apex/managedContentCreation.apex > setupB2b/managedContentCreation.apex
 
-# mediaType="cms_image"
-# mediaUrlName="urlname"
-# mediaStatus="Published"
-# mediaAltText=""
+echo_attention "Executing the apex script file"
+# sfdx force:apex:execute -f setupB2b/managedContentCreation.apex
+returned=`sfdx force:apex:execute -f setupB2b/managedContentCreation.apex`
 
-# mediaThumbUrl="https://live.staticflickr.com/65535/49816090811_622af115a8.jpg",
-# source
+echo_attention "Removing the setupB2b folder"
+rm -rf setupB2b
+
+# # I'm still working on it
+# # ./scripts/bash/importProductMedia.sh Shop

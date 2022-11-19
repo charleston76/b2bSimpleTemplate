@@ -46,7 +46,7 @@ then
     error_and_exit "The setup will stop."
 fi
 
-echo_attention "Doing the first settings definition (begin scratch or not)"
+echo_attention "Doing the first settings definition (being scratch organization or not)"
 rm -rf Deploy
 sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01additionalSettings.xml
 sfdx force:mdapi:deploy -d Deploy/ -w -1 

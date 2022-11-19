@@ -1,6 +1,7 @@
 {
     "username": "buyerContact@YOUR_SCRATCH_NAME.scratch.org",
-    "LastName": "Scratch",
+    "FirstName": "buyerContact",
+    "LastName": "YOUR_SCRATCH_NAME Scratch",
     "Email": "youremail@example.com",
     "Alias": "buyer",
     "TimeZoneSidKey": "America/Denver",

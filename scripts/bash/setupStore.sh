@@ -21,13 +21,6 @@ function echo_attention() {
   echo -e "${green}$1${no_color}"
 }
 
-function just_wait_a_litte() {
-	local green='\033[0;32m'
-	local no_color='\033[0m'
-	echo -e "${green}Just waiting a little to conitnue${no_color}"
-	sleep 5
-}
-
 if [ -z "$1" ]
 then
 	echo "You need to specify the name of the storefront to create it."
@@ -202,15 +195,12 @@ echo "5. Mapping Admin User to Role."
 ceoID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'CEO'" -r csv |tail -n +2`
 sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminRoleScriptCreation' DeveloperName='AdminRoleScriptCreation' RollupDescription='AdminRoleScriptCreation' "
 # after creating, just wait a little to get the id back
-just_wait_a_litte
 newRoleID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
 echo_attention "newRoleID $newRoleID"
 # after creating, just wait a little to get the id back
-just_wait_a_litte
 username=`sfdx force:user:display | grep "Username" | sed 's/Username//g;s/^[[:space:]]*//g'`
 echo_attention "username $username"
 # after creating, just wait a little to get the id back
-just_wait_a_litte
 sfdx force:data:record:update -s User -w "Username='$username'" -v "UserRoleId='$newRoleID'" 
 
 # Putted on the manifest to deploy there
@@ -257,7 +247,7 @@ contactUserId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE u
 echo_attention "Creating the contact $contactUsername user Id $contactUserId"
 sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername'"
 contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
-sfdx force:data:record:update -s User -w "Username='$username'" -v "ContactId='$contactId'" 
+sfdx force:data:record:update -s User -w "Username='$contactUsername'" -v "ContactId='$contactId'" 
 
 # Add Contact Point Addresses to the buyer account associated with the buyer user.
 # The account will have 2 Shipping and 2 billing addresses associated to it.

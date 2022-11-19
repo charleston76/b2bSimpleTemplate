@@ -2,24 +2,58 @@
 https://developer.salesforce.com/blogs/2019/11/content-delivery-api-to-extend-or-integrate-content
 https://developer.salesforce.com/blogs/2019/11/use-the-cms-app-to-create-content
 
+
+Get the community ID
+    select Id, Name from Network where Name = 'tmpNew'
+    0DB8G0000004UxAWAU
+
+
 Get the content workspace I need
-SELECT Id, Name, Description FROM ManagedContentSpace
+    SELECT Id, Name, Description FROM ManagedContentSpace
+    where Name = 'tmpNew Workspace'
 
 With that ID get managed content existing
-SELECT Id, ContentKey, AuthoredManagedContentSpaceId FROM ManagedContent WHERE AuthoredManagedContentSpaceId = '0Zu8b0000011G7XCAU'
+    SELECT Id, ContentKey, AuthoredManagedContentSpaceId FROM ManagedContent WHERE AuthoredManagedContentSpaceId = '0Zu8G0000008PROSA2'
 
-Exemplo MCZOGM2UFPKJAQJJEWE4AH63CCPY
-ID 20Y8b000000ksodEAA
+Exemplo MC6QKYWRTIW5FXDL6J5BU2XUHJB4
+    ID 20Y8G000000GpILUA0
+
+Check the important product media groups to this importation
+    SELECT Id, Name, DeveloperName, Description FROM ElectronicMediaGroup
+    WHERE DeveloperName IN ('productDetailImage','productListImage') 
+    ORDER BY DeveloperName
+
+    2mg8G0000007cKpQAI Product Detail Images
+    2mg8G0000007cKqQAI Product List Image
+
+That is the product media file
+    SELECT Id, Name, ProductId, ElectronicMediaId, SortOrder, ElectronicMediaGroupId FROM ProductMedia
+
+    ProductMedia objInsert = new ProductMedia(
+        ProductId = '01t8G000001jc9VQAQ',
+        ElectronicMediaId = '20Y8G000000GpILUA0',
+        ElectronicMediaGroupId = '2mg8G0000007cKpQAI'
+    );
+
+    insert objInsert;
+
+    ProductMedia objInsert = new ProductMedia(
+        ProductId = '01t8G000001jc9VQAQ',
+        ElectronicMediaId = '20Y8G000000GpILUA0',
+        ElectronicMediaGroupId = '2mg8G0000007cKqQAI'
+    );
+
+    insert objInsert;    
+
 
 List<String> haveValue = new List<String>{
 'title','NameField'};
-String communityId = '0DB8b00000112jDGAQ';
+String communityId = '0DB8G0000004UxAWAU';
 String contentType = '';
-String managedContentIds_str = '20Y8b000000ksodEAA';
+String managedContentIds_str = '20Y8G000000GpILUA0';
 String topicNames_str = '';
 String language = '';
-//List<ConnectApi.ManagedContentVersion> lstReturn = ManagedContentControllerForLex.getMContent(contentType, managedContentIds_str, topicNames_str, language);
-List<ConnectApi.ManagedContentVersion> lstReturn = ManagedContentControllerForLex.getMContent(contentType, managedContentIds_str, topicNames_str, language);
+List<ConnectApi.ManagedContentVersion> lstReturn = ManagedContentController.getMContent(communityId, contentType, managedContentIds_str, topicNames_str, language);
 
 for (ConnectApi.ManagedContentVersion rowVersion : lstReturn){
     system.debug('rowVersion ' + rowVersion);
@@ -28,27 +62,23 @@ for (ConnectApi.ManagedContentVersion rowVersion : lstReturn){
     system.debug('rowVersion.managedContentId ' + rowVersion.managedContentId);
 
 	Map<String, ConnectApi.ManagedContentNodeValue> mapNodes = rowVersion.contentNodes;
-    //system.debug('mapNodes ' + mapNodes);
-    for (String keySet : mapNodes.keyset()){
-        //system.debug('keySet ' + keySet);
-            
-        system.debug('mapNodes.get(keySet) ' + mapNodes.get(keySet));
-        ConnectApi.ManagedContentNodeValue singleValue =  mapNodes.get(keySet);
-        //system.debug('haveValue.contains(keySet) ' + haveValue.contains(keySet));
-        if (! haveValue.contains(keySet)){
-        	system.debug('singleValue ' + singleValue);
-            //ConnectApi.ManagedContentTextNodeValue value = (ConnectApi.ManagedContentTextNodeValue) singleValue;
-            ConnectApi.ManagedContentMediaSourceNodeValue value = (ConnectApi.ManagedContentMediaSourceNodeValue) singleValue;
-            system.debug('value.url ' + value.url);
-            //system.debug('singleValue.nodeType ' + singleValue.nodeType);
-            //system.debug('singleValue.value ' + singleValue.value);
-        } 
-
-    }
+    system.debug('mapNodes ' + mapNodes);
 }
 
-
 You need to create the CMS workspace manually
+    Enable the followgin tabs in the System Administrator profile:
+
+    Remark you'll not get do that with the enhanced profile advated
+    [your_STORE_NAME] Workshop
+    Set your store front as a channel there
+
+Upload the images to your store front.
+Here we'll use [this example file](./scripts/json/productMedia.json.zip) that is [the same extrated here](./scripts/json/productMedia.json), but you need to use the zip to easy upload that on your environment.
+
+    In the CMS home page click on "Import Content" and select your file:
+
+    And mark the check-box to "Publish content after import"
+
     Add CMS Workspace and let the search enable (on that cms channel, click on Edit in ddl button, click Search > "Enable Search" )
     Will possible to do that /services/data/v54.0/connect/cms/delivery/channels/0ap8b0000011GJCAA2/contents/search?queryTerm=ss
 

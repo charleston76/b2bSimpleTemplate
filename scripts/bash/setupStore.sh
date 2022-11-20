@@ -261,11 +261,14 @@ sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupI
 # sfdx force:user:create -f scripts/json/buyer-user-def.json
 # sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
 # Get the Contact user name
-sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g;s/YOUR_CONTACT_ID/$contactId/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
+sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
 contactUsername=`grep -i '"Username":' setupB2b/tmpBuyerUserDef.json|cut -d "\"" -f 4`
+# Remove this file, because the contact Id was not there yet
+rm setupB2b/tmpBuyerUserDef.json
+sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g;s/YOUR_CONTACT_ID/$contactId/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
+
 sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername'"
 contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
-# sfdx force:data:record:update -s User -w "Username='$contactUsername'" -v "ContactId='$contactId'" 
 echo_attention "contactUsername $contactUsername ContactId $contactId"
 
 sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
@@ -310,12 +313,17 @@ echo "Store Type is $storeType"
 echo "Creating the package to deploy, including the new flow."
 cd experience-bundle-package/unpackaged/
 # Before creating the package to deploy, let deactivate some options that are not going fine
-echo "Deactivating some options."
-# networks/shopOne.network 
-cp networks/$storename.network  > networks/$storename.network.bkp
-# sed -E "s/<enableApexCDNCaching>true</enableApexCDNCaching>/ /g" networks/$storename.network  > networks/$storename.network2 
+# # This option update the field, but even comming with false, the error persis
+# networkId=$(sfdx force:data:soql:query -q "SELECT Id FROM Network WHERE Name='${storename}' LIMIT 1" -r csv |tail -n +2)
+# echo_attention "Deactivating some Network object options for storeId $networkId"
+# sfdx force:data:record:update -s Network -w "Id='$networkId' " -v "OptionsApexCDNCachingEnabled=false" 
 
-OptionsApexCDNCachingEnabled
+
+echo "Removing some options from the networks/$storename.network file"
+# sed -i '' -e '/<meta>/,/<\/meta>/d' my-file.xml
+sed -i -e "s/<enableApexCDNCaching>true<\/enableApexCDNCaching>//g" networks/$storename.network
+sed -i -e "s/<enableImageOptimizationCDN>true<\/enableImageOptimizationCDN>//g" networks/$storename.network
+sed -i -e "s/<enableImageOptimizationCDN>false<\/enableImageOptimizationCDN>//g" networks/$storename.network
 
 cp -f ../../manifest/package-deploy-template.xml package.xml
 zip -r -X ../"$communityExperienceBundleName"ToDeploy.zip *
@@ -327,8 +335,8 @@ cd ../..
 echo "Deploy the new zip including the flow, ignoring warnings, then clean-up."
 sfdx force:mdapi:deploy -g -f experience-bundle-package/"$communityExperienceBundleName"ToDeploy.zip --wait -1 --verbose --singlepackage
 
-echo_attention "not removing this folder and the package to try understand and fix this issues"
-echo_attention "rm -fr experience-bundle-package"
+echo_attention "Removing this folder and the package to try understand and fix this issues"
+rm -fr experience-bundle-package
 
 echo "Removing the package xml files used for retrieving and deploying metadata at this step."
 echo_attention "rm package-retrieve.xml"

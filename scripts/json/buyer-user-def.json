@@ -4,7 +4,7 @@
     "FirstName": "buyerContact",
     "LastName": "YOUR_SCRATCH_NAME Scratch",
     "Email": "youremail@example.com",
-    "Alias": "YOUR_SCRATCH_NAME.buyer",
+    "Alias": "buyer",
     "TimeZoneSidKey": "America/Denver",
     "LocaleSidKey": "en_US",
     "EmailEncodingKey": "UTF-8",

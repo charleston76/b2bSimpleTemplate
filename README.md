@@ -151,10 +151,10 @@ To work with Scratch orgs, we supposed that, you need to to the steps below:
         sfdx force:config:set defaultusername=tmpB2b
         ```
 1. Deploy the things with the script (please see the [Scripting deploying](#All-org-script-deploy) under "Deploying the additional settings" section);
-    * ./scripts/bash/createDigitalExpSetupStore.sh [YOUR_SHOP_NAME_HERE]
+    * ./scripts/bash/createDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
     * Example:
     ```
-    ./scripts/bash/createDigitalExpSetupStore.sh Shop
+    ./scripts/bash/createDigitalExpSetupStore.sh tmpNew Shop
     ```
 
 ### Other org types

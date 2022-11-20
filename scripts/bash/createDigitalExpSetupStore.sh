@@ -57,7 +57,7 @@ sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01addition
 sfdx force:mdapi:deploy -d Deploy/ -w -1 
 
 
-sfdx force:community:create --name "$storename" --templatename "B2B Commerce" --urlpathprefix "$storename" --description "Store $storename created by Quick Start script."
+sfdx force:community:create --name "$storename" --templatename "B2B Commerce" --urlpathprefix "$storename" --description "Store $storename created by the script."
 echo ""
 
 storeId=""

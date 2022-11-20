@@ -183,6 +183,7 @@ checkoutMetaFile=$checkoutMetaFolder$greppedFile
 tmpfile=$(mktemp)
 # This determines the name of the main flow as it will always be the only flow to terminate in "Checkout.flow"
 mainFlowName=`ls force-app/main/default/flows/*Checkout.flow-meta.xml | sed 's/.*flows\/\(.*\).flow-meta.xml/\1/'`
+
 # This will make this the selected checkout flow in the store
 sed "s/sfdc_checkout__CheckoutTemplate/$mainFlowName/g" $checkoutMetaFile > $tmpfile
 mv -f $tmpfile $checkoutMetaFile
@@ -233,15 +234,8 @@ echo_attention "Creating a folder to copy json file"
 rm -rf setupB2b
 mkdir setupB2b
 
-# Replace the name there and put with the scratch org name
-# sfdx force:user:create -f scripts/json/buyer-user-def.json
-sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
-sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
-# Get the Contact user name
-contactUsername=`grep -i '"Username":' setupB2b/tmpBuyerUserDef.json|cut -d "\"" -f 4`
-echo_attention "contactUsername $contactUsername"
-echo_attention "Removing the setupB2b folder"
-rm -rf setupB2b
+# Not create here anymore
+# sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
 
 # The code below definitely works, but I prefere define the name with the store name
 # buyerusername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
@@ -262,14 +256,30 @@ echo "Assigning Buyer Account to Buyer Group."
 buyergroupID=`sfdx force:data:soql:query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '${buyergroupName}'" -r csv |tail -n +2`
 sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupID' BuyerId='$accountID'"
 
+
+# Replace the name there and put with the scratch org name
+# sfdx force:user:create -f scripts/json/buyer-user-def.json
+# sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
+sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g;s/YOUR_CONTACT_ID/$contactId/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
+# Get the Contact user name
+contactUsername=`grep -i '"Username":' setupB2b/tmpBuyerUserDef.json|cut -d "\"" -f 4`
+echo_attention "contactUsername $contactUsername"
+echo_attention "Removing the setupB2b folder"
+
+sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername'"
+sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
+
+rm -rf setupB2b
+
+contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
+# sfdx force:data:record:update -s User -w "Username='$contactUsername'" -v "ContactId='$contactId'" 
+echo_attention "contactUsername $contactUsername ContactId $contactId"
+
 # Add the contact
 contactUserId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$contactUsername'" -r csv |tail -n +2`
 echo_attention "Creating the contact $contactUsername contactUserId Id $contactUserId"
-sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername'"
-contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
-# sfdx force:data:record:update -s User -w "Username='$contactUsername'" -v "ContactId='$contactId'" 
-echo_attention "contactUsername $contactUsername ID $ucontactIdserId ContactId $contactId"
-sfdx force:data:record:update -s User -w "Id='$contactUserId'" -v "ContactId='$contactId'" 
+
+# sfdx force:data:record:update -s User -w "Id='$contactUserId'" -v "ContactId='$contactId'" 
 
 
 # Add Contact Point Addresses to the buyer account associated with the buyer user.
@@ -294,7 +304,7 @@ echo "Store Type is $storeType"
 # # Update Guest Profile with required CRUD and FLS
 # if [ "$storeType" = "B2C" ]
 # then
-	sh ./scripts/bash/b2bGuestBrowsing.sh $communityNetworkName $buyergroupName true
+	sh ./scripts/bash/b2bGuestBrowsing.sh $communityNetworkName $buyergroupName
 # fi	
 #############################
 #   Deploy Updated Store    #

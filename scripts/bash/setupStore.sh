@@ -14,6 +14,12 @@
 # - add Contact Point Addresses for Shipping and Billing to your new buyer Account
 # - activate the store
 # - publish your store so that the changes are reflected
+function exit_error_message() {
+  local red_color='\033[0;31m'
+  local no_color='\033[0m'
+  echo -e "${red_color}$1${no_color}"
+  exit 0
+}
 
 function echo_attention() {
   local green='\033[0;32m'
@@ -23,18 +29,27 @@ function echo_attention() {
 
 if [ -z "$1" ]
 then
-	echo "You need to specify the name of the storefront to create it."
-	exit 0
+	exit_error_message "You need to specify the scratch org name to create it."
 fi
 
+if [ -z "$2" ]
+then
+	exit_error_message "You need to specify the the store name to create it."
+fi
+
+rm -rf experience-bundle-package
 mkdir experience-bundle-package
 #############################
 #    Retrieve Store Info    #
 #############################
 
-communityNetworkName=$1
+scratchOrgName=$1
+storename=$2
+
+
+communityNetworkName=$storename
 # If the name of the store starts with a digit, the CustomSite name will have a prepended X.
-communitySiteName="$(echo $1 | sed -E 's/(^[0-9])/X\1/g')"
+communitySiteName="$(echo $storename | sed -E 's/(^[0-9])/X\1/g')"
 # The ExperienceBundle name is similar to the CustomSite name, but has a 1 appended.
 communityExperienceBundleName="$communitySiteName"1
 
@@ -54,7 +69,7 @@ unzip -d experience-bundle-package experience-bundle-package/unpackaged.zip
 #       Update Store        #
 #############################
 
-storeId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
+storeId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
 
 # Register Apex classes needed for checkout integrations and map them to the store
 echo "1. Setting up your integrations."
@@ -180,13 +195,13 @@ mv -f $tmpfile $checkoutMetaFile
 echo "3. Updating members list and activating community."
 networkMetaFile="experience-bundle-package/unpackaged/networks/$communityNetworkName".network
 tmpfile=$(mktemp)
-sed "s/<networkMemberGroups>/<networkMemberGroups><profile>Buyer_Profile<\/profile>/g;s/<status>.*/<status>Live<\/status>/g" $networkMetaFile > $tmpfile
+sed "s/<networkMemberGroups>/<networkMemberGroups><profile>Buyer Profile<\/profile>/g;s/<status>.*/<status>Live<\/status>/g" $networkMetaFile > $tmpfile
 mv -f $tmpfile $networkMetaFile
 
 # Import Products and related data
 # Get new Buyer Group Name
 echo "4. Importing products and the other things"
-buyergroupName=$(bash ./scripts/bash/importProductSample.sh $1 | tail -n 1)
+buyergroupName=$(bash ./scripts/bash/importProductSample.sh $storename | tail -n 1)
 
 
 # If notnot working with scratch orgs, comment the code below
@@ -198,10 +213,14 @@ sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminR
 newRoleID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
 echo_attention "newRoleID $newRoleID"
 # after creating, just wait a little to get the id back
-username=`sfdx force:user:display | grep "Username" | sed 's/Username//g;s/^[[:space:]]*//g'`
-echo_attention "username $username"
+userName=`sfdx force:user:display | grep "Username" | sed 's/Username//g;s/^[[:space:]]*//g'`
+trimName=`echo $userName | sed 's/ *$//g'`
+userName=$trimName
+userId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$userName'" -r csv |tail -n +2`
+
+echo_attention "username $userName ID $userId"
 # after creating, just wait a little to get the id back
-sfdx force:data:record:update -s User -w "Username='$username'" -v "UserRoleId='$newRoleID'" 
+sfdx force:data:record:update -s User -w "Id='$userId' username='$userName'" -v "UserRoleId='$newRoleID'" 
 
 # Putted on the manifest to deploy there
 # echo_attention "Deploying the profile to create the user"
@@ -211,11 +230,12 @@ sfdx force:data:record:update -s User -w "Username='$username'" -v "UserRoleId='
 echo "6. Creating Buyer User with associated Contact and Account."
 
 echo_attention "Creating a folder to copy json file"
+rm -rf setupB2b
 mkdir setupB2b
 
 # Replace the name there and put with the scratch org name
 # sfdx force:user:create -f scripts/json/buyer-user-def.json
-sed -E "s/YOUR_SCRATCH_NAME/$communityNetworkName/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
+sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
 sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
 # Get the Contact user name
 contactUsername=`grep -i '"Username":' setupB2b/tmpBuyerUserDef.json|cut -d "\"" -f 4`
@@ -244,10 +264,13 @@ sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupI
 
 # Add the contact
 contactUserId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$contactUsername'" -r csv |tail -n +2`
-echo_attention "Creating the contact $contactUsername user Id $contactUserId"
+echo_attention "Creating the contact $contactUsername contactUserId Id $contactUserId"
 sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername'"
 contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
-sfdx force:data:record:update -s User -w "Username='$contactUsername'" -v "ContactId='$contactId'" 
+# sfdx force:data:record:update -s User -w "Username='$contactUsername'" -v "ContactId='$contactId'" 
+echo_attention "contactUsername $contactUsername ID $ucontactIdserId ContactId $contactId"
+sfdx force:data:record:update -s User -w "Id='$contactUserId'" -v "ContactId='$contactId'" 
+
 
 # Add Contact Point Addresses to the buyer account associated with the buyer user.
 # The account will have 2 Shipping and 2 billing addresses associated to it.

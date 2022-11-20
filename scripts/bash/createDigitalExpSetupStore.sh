@@ -22,23 +22,28 @@ function echo_attention() {
 # where sfdx
 # where sfdx2
 
-storename=""
-
 function error_and_exit() {
-   echo "$1"
-   exit 1
+  local red_color='\033[0;31m'
+  local no_color='\033[0m'
+  echo -e "${red_color}$1${no_color}"
+  exit 1
 }
 
 if [ -z "$1" ]
 then
-    echo "A new store will be created... Please enter the name of the store: "
-    read storename
-else
-    storename=$1
+	error_and_exit "You need to specify the scratch org name to create it."
 fi
 
+if [ -z "$2" ]
+then
+	error_and_exit "You need to specify the the store name to create it."
+fi
+
+scratchOrgName=$1
+storename=$2
+
 # Check if the store nam already exist, to no try create with error
-checkExistinStoreId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
+checkExistinStoreId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
 
 if [ ! -z "$checkExistinStoreId" ]
 then
@@ -92,4 +97,4 @@ echo_attention "Setting up the store and creating the buyer user..."
 # Cleaning up if a previous run failed
 rm -rf experience-bundle-package
 
-./scripts/bash/setupStore.sh "${storename}" || error_and_exit "Store setup failed."
+./scripts/bash/setupStore.sh $scratchOrgName $storename || error_and_exit "Store setup failed."

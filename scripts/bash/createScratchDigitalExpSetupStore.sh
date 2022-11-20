@@ -35,4 +35,4 @@ echo_attention "Setting the $scratchOrgName as default"
 sfdx force:config:set defaultusername=$scratchOrgName
 
 echo_attention "Starting the $storename digital experience creation"
-./scripts/bash/createDigitalExpSetupStore.sh $storename
+./scripts/bash/createDigitalExpSetupStore.sh $scratchOrgName $storename

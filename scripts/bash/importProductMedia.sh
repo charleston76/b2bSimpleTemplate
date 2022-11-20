@@ -44,6 +44,7 @@ fi
 echo_attention "community id: $communityId found to $storename"
 
 echo_attention "Creating a folder to copy the apex script file"
+rm -rf setupB2b
 mkdir setupB2b
 
 # Replace the names of the components that will be retrieved.

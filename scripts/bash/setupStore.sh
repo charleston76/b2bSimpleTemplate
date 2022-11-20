@@ -203,7 +203,7 @@ mv -f $tmpfile $networkMetaFile
 # Get new Buyer Group Name
 echo "4. Importing products and the other things"
 buyergroupName=$(bash ./scripts/bash/importProductSample.sh $storename | tail -n 1)
-
+echo_attention "Buyer group name $buyergroupName"
 
 # If notnot working with scratch orgs, comment the code below
 # Assign a role to the admin user, else update user will error out
@@ -260,20 +260,17 @@ sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupI
 # Replace the name there and put with the scratch org name
 # sfdx force:user:create -f scripts/json/buyer-user-def.json
 # sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
-sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g;s/YOUR_CONTACT_ID/$contactId/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
 # Get the Contact user name
+sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g;s/YOUR_CONTACT_ID/$contactId/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
 contactUsername=`grep -i '"Username":' setupB2b/tmpBuyerUserDef.json|cut -d "\"" -f 4`
-echo_attention "contactUsername $contactUsername"
-echo_attention "Removing the setupB2b folder"
-
 sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername'"
-sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
-
-rm -rf setupB2b
-
 contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
 # sfdx force:data:record:update -s User -w "Username='$contactUsername'" -v "ContactId='$contactId'" 
 echo_attention "contactUsername $contactUsername ContactId $contactId"
+
+sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
+
+rm -rf setupB2b
 
 # Add the contact
 contactUserId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$contactUsername'" -r csv |tail -n +2`
@@ -304,7 +301,7 @@ echo "Store Type is $storeType"
 # # Update Guest Profile with required CRUD and FLS
 # if [ "$storeType" = "B2C" ]
 # then
-	sh ./scripts/bash/b2bGuestBrowsing.sh $communityNetworkName $buyergroupName
+	sh ./scripts/bash/b2bGuestBrowsing.sh "$communityNetworkName" "$buyergroupName"
 # fi	
 #############################
 #   Deploy Updated Store    #
@@ -312,6 +309,12 @@ echo "Store Type is $storeType"
 
 echo "Creating the package to deploy, including the new flow."
 cd experience-bundle-package/unpackaged/
+# Before creating the package to deploy, let deactivate some options that are not going fine
+echo "Deactivating some options."
+# networks/shopOne.network 
+cp networks/$storename.network  > networks/$storename.network.bkp
+# sed -E "s/<enableApexCDNCaching>true</enableApexCDNCaching>/ /g" networks/$storename.network  > networks/$storename.network2 
+
 cp -f ../../manifest/package-deploy-template.xml package.xml
 zip -r -X ../"$communityExperienceBundleName"ToDeploy.zip *
 cd ../..
@@ -321,10 +324,12 @@ cd ../..
 
 echo "Deploy the new zip including the flow, ignoring warnings, then clean-up."
 sfdx force:mdapi:deploy -g -f experience-bundle-package/"$communityExperienceBundleName"ToDeploy.zip --wait -1 --verbose --singlepackage
-rm -fr experience-bundle-package
+
+echo_attention "not removing this folder and the package to try understand and fix this issues"
+echo_attention "rm -fr experience-bundle-package"
 
 echo "Removing the package xml files used for retrieving and deploying metadata at this step."
-rm package-retrieve.xml
+echo_attention "rm package-retrieve.xml"
 
 echo "Publishing the community."
 sfdx force:community:publish -n "$communityNetworkName"

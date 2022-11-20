@@ -18,7 +18,8 @@
         },
         "communitiesSettings": {
             "enableNetworksEnabled": true,
-            "enableOotbProfExtUserOpsEnable": true
+            "enableOotbProfExtUserOpsEnable": true,
+            "enableApexCDNCaching": false
         },
         "orderManagementSettings": {
             "enableOrderManagement": true

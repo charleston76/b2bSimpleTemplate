@@ -3,6 +3,7 @@
     <enableB2CIntegration>false</enableB2CIntegration>
     <enableB2CSelfService>false</enableB2CSelfService>
     <enableDuplicateManagement>false</enableDuplicateManagement>
+    <enableIndividualOrderItemTaxAdjustments>false</enableIndividualOrderItemTaxAdjustments>
     <enableOMAutomation>false</enableOMAutomation>
     <enableOrderManagement>true</enableOrderManagement>
     <enablePersonAccountsForShoppers>false</enablePersonAccountsForShoppers>

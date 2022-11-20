@@ -315,6 +315,8 @@ echo "Deactivating some options."
 cp networks/$storename.network  > networks/$storename.network.bkp
 # sed -E "s/<enableApexCDNCaching>true</enableApexCDNCaching>/ /g" networks/$storename.network  > networks/$storename.network2 
 
+OptionsApexCDNCachingEnabled
+
 cp -f ../../manifest/package-deploy-template.xml package.xml
 zip -r -X ../"$communityExperienceBundleName"ToDeploy.zip *
 cd ../..

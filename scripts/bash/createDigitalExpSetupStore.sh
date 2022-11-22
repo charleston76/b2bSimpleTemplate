@@ -39,6 +39,10 @@ then
 	error_and_exit "You need to specify the the store name to create it."
 fi
 
+echo_attention "Starting the digital experience creation at $(date)"
+echo ""
+echo ""
+
 scratchOrgName=$1
 storename=$2
 
@@ -92,9 +96,13 @@ set +x
 
 echo ""
 
-
-echo_attention "Setting up the store and creating the buyer user..."
 # Cleaning up if a previous run failed
 rm -rf experience-bundle-package
+
+echo ""
+echo ""
+echo_attention "Finishing the digital experience creation at $(date)"
+echo ""
+echo ""
 
 ./scripts/bash/setupStore.sh $scratchOrgName $storename || error_and_exit "Store setup failed."

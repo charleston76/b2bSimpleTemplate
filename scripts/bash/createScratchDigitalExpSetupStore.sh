@@ -24,6 +24,10 @@ then
 	exit_error_message "You need to specify the the store name to create it."
 fi
 
+echo_attention "Starting the scratch org creation at $(date)"
+echo ""
+echo ""
+
 scratchOrgName=$1
 storename=$2
 
@@ -34,5 +38,10 @@ sfdx force:org:create -f config/project-scratch-def.json -a $scratchOrgName -d 1
 echo_attention "Setting the $scratchOrgName as default"
 sfdx force:config:set defaultusername=$scratchOrgName
 
-echo_attention "Starting the $storename digital experience creation"
+echo ""
+echo ""
+echo_attention "Finishing the scratch org creation at $(date)"
+echo ""
+echo ""
+
 ./scripts/bash/createDigitalExpSetupStore.sh $scratchOrgName $storename

@@ -70,7 +70,7 @@ If you already are working with scratch orgs and have all configured and defined
 * ./scripts/bash/createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
 * Example:
     ```
-    ./scripts/bash/createScratchDigitalExpSetupStore.sh tmpNew Shop
+    ./scripts/bash/createScratchDigitalExpSetupStore.sh tmpB2B storeFront
     ```
     
 That will do all the configuration needed to achieve:
@@ -131,6 +131,9 @@ Nevertheless, that upload doesn't put some pretty images there... for now, to ac
 
     ![Product image](images/b2bCMSImport6.png)
 
+1. Rebuild your search index and check the things working!
+
+    ![Rebuild Index](images/b2bCMSImport7.png)
 
 ### Scratch org configuration
 
@@ -154,7 +157,7 @@ To work with Scratch orgs, we supposed that, you need to to the steps below:
     * ./scripts/bash/createDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
     * Example:
     ```
-    ./scripts/bash/createDigitalExpSetupStore.sh tmpNew Shop
+    ./scripts/bash/createDigitalExpSetupStore.sh tmpB2B storeFront
     ```
 
 ### Other org types

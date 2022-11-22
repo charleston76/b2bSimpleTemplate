@@ -37,6 +37,10 @@ then
 	exit_error_message "You need to specify the the store name to create it."
 fi
 
+echo_attention "Starting the storefront set up and  buyer user creation at $(date)"
+echo ""
+echo ""
+
 rm -rf experience-bundle-package
 mkdir experience-bundle-package
 #############################
@@ -265,19 +269,22 @@ sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-use
 contactUsername=`grep -i '"Username":' setupB2b/tmpBuyerUserDef.json|cut -d "\"" -f 4`
 # Remove this file, because the contact Id was not there yet
 rm setupB2b/tmpBuyerUserDef.json
-sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g;s/YOUR_CONTACT_ID/$contactId/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
-
 sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername'"
 contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
 echo_attention "contactUsername $contactUsername ContactId $contactId"
+sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g;s/YOUR_CONTACT_ID/$contactId/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
 
 sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
 
+echo "Assigning the Buyer permission set."
+# sfdx force:user:permset:assign --permsetname <permset_name> --targetusername <admin-user> --onbehalfof <non-admin-user>
+sfdx force:user:permset:assign --permsetname B2BBuyer --targetusername  $userName --onbehalfof $contactUsername
+
 rm -rf setupB2b
 
-# Add the contact
-contactUserId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$contactUsername'" -r csv |tail -n +2`
-echo_attention "Creating the contact $contactUsername contactUserId Id $contactUserId"
+# # Add the contact
+# contactUserId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$contactUsername'" -r csv |tail -n +2`
+# echo_attention "Creating the contact $contactUsername contactUserId Id $contactUserId"
 
 # sfdx force:data:record:update -s User -w "Id='$contactUserId'" -v "ContactId='$contactId'" 
 
@@ -350,6 +357,10 @@ sfdx 1commerce:search:start -n "$communityNetworkName"
 
 
 echo "QUICK START COMPLETE!"
+
+echo ""
+echo ""
+echo_attention "Finishing the storefront set up and  buyer user creation at $(date)"
 
 # # Now, I get the user name there in the file, to create the user
 # contactUsername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`

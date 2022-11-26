@@ -212,11 +212,21 @@ echo_attention "Buyer group name $buyergroupName"
 # If notnot working with scratch orgs, comment the code below
 # Assign a role to the admin user, else update user will error out
 echo "5. Mapping Admin User to Role."
-ceoID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'CEO'" -r csv |tail -n +2`
-sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminRoleScriptCreation' DeveloperName='AdminRoleScriptCreation' RollupDescription='AdminRoleScriptCreation' "
-# after creating, just wait a little to get the id back
+# First of all, checks if that is not already created there...
 newRoleID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
-echo_attention "newRoleID $newRoleID"
+
+if [ -z "$newRoleID" ]
+then
+	ceoID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'CEO'" -r csv |tail -n +2`
+	sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminRoleScriptCreation' DeveloperName='AdminRoleScriptCreation' RollupDescription='AdminRoleScriptCreation' "
+	# after creating, just wait a little to get the id back
+	newRoleID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
+	echo_attention "Admin user roleID ID created now $newRoleID"
+else
+	echo "Admin user roleID ID alreadt created $newRoleID"
+fi
+
+
 # after creating, just wait a little to get the id back
 userName=`sfdx force:user:display | grep "Username" | sed 's/Username//g;s/^[[:space:]]*//g'`
 trimName=`echo $userName | sed 's/ *$//g'`
@@ -243,7 +253,7 @@ mkdir setupB2b
 
 # The code below definitely works, but I prefere define the name with the store name
 # buyerusername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
-buyerusername="buyer Account ${1}"
+buyerusername="buyer $storename"
 # buyerusername = "'.'${buyerusername}"
 echo "buyerusername >>>>>>>>>> " $buyerusername
 
@@ -252,7 +262,7 @@ echo "buyerusername >>>>>>>>>> " $buyerusername
 echo "Making Account a Buyer Account."
 sfdx force:data:record:create -s Account -v "Name='$buyerusername'"
 
-accountID=`sfdx force:data:soql:query --query \ "SELECT Id FROM Account WHERE Name LIKE '${buyerusername}' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
+accountID=`sfdx force:data:soql:query --query \ "SELECT Id FROM Account WHERE Name = '${buyerusername}' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
 sfdx force:data:record:create -s BuyerAccount -v "BuyerId='$accountID' Name='$buyerusername' isActive=true"
 
 # Assign Account to Buyer Group
@@ -265,22 +275,27 @@ sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupI
 # sfdx force:user:create -f scripts/json/buyer-user-def.json
 # sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
 # Get the Contact user name
+rm setupB2b/tmpBuyerUserDef.json
 sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
 contactUsername=`grep -i '"Username":' setupB2b/tmpBuyerUserDef.json|cut -d "\"" -f 4`
 # Remove this file, because the contact Id was not there yet
 rm setupB2b/tmpBuyerUserDef.json
-sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='B2B' LastName='$contactUsername'"
-contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
-echo_attention "contactUsername $contactUsername ContactId $contactId"
-sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g;s/YOUR_CONTACT_ID/$contactId/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
+sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='$storename' LastName='$contactUsername'"
+# contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
+contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = '$storename $contactUsername'" -r csv |tail -n +2`
 
+userAlias=${contactId: -8}
+
+echo_attention "contactUsername $contactUsername ContactId $contactId user alias $userAlias"
+
+sed -E "s/YOUR_ALIAS__CONTACT_ID/$userAlias/g;s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g;s/YOUR_CONTACT_ID/$contactId/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
 sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
 
 echo "Assigning the Buyer permission set."
 # sfdx force:user:permset:assign --permsetname <permset_name> --targetusername <admin-user> --onbehalfof <non-admin-user>
 sfdx force:user:permset:assign --permsetname B2BBuyer --targetusername  $userName --onbehalfof $contactUsername
 
-rm -rf setupB2b
+echo "rm -rf setupB2b"
 
 # # Add the contact
 # contactUserId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$contactUsername'" -r csv |tail -n +2`
@@ -346,7 +361,7 @@ echo_attention "Removing this folder and the package to try understand and fix t
 rm -fr experience-bundle-package
 
 echo "Removing the package xml files used for retrieving and deploying metadata at this step."
-echo_attention "rm package-retrieve.xml"
+rm package-retrieve.xml
 
 echo "Publishing the community."
 sfdx force:community:publish -n "$communityNetworkName"
@@ -354,6 +369,9 @@ sleep 10
 
 echo "Creating search index."
 sfdx 1commerce:search:start -n "$communityNetworkName"
+
+
+# Also updates the 
 
 
 echo "QUICK START COMPLETE!"

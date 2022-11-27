@@ -4,9 +4,9 @@
 This repository is supposed to help with some necessary procedures to easily create a B2B scratch, developer, sandbox or even a production organization environment, of course, respecting some necessary steps, licenses and configurations to achieve that.
 
 
-Please, take a look on this **video demo** (better in playback speed 1.5)!
+Please, take a look on the **video demos** we have in the channel (better in playback speed 1.5)!
 
-[![Execution example](images/b2bSimpleTemplate.png)](https://youtu.be/NchUIRcGwAU)
+[![Execution example](images/santosforceChannel.png)](https://www.youtube.com/channel/UCn4eRGgTiZLz1rb2qXLfjew)
 
 
 Probably you may think: **from where they got those ideas?**

@@ -233,7 +233,7 @@ trimName=`echo $userName | sed 's/ *$//g'`
 userName=$trimName
 userId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$userName'" -r csv |tail -n +2`
 
-echo_attention "username $userName ID $userId"
+echo_attention "Logged in username $userName ID $userId"
 # after creating, just wait a little to get the id back
 sfdx force:data:record:update -s User -w "Id='$userId' username='$userName'" -v "UserRoleId='$newRoleID'" 
 
@@ -248,61 +248,52 @@ echo_attention "Creating a folder to copy json file"
 rm -rf setupB2b
 mkdir setupB2b
 
-# Not create here anymore
-# sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
+# First of all, you need change the file information, and do the importation, that user, and account will be created, in one shot
+# Replace the names there and put with the scratch org and store names
+# Get the Contact user name
+echo "Changing the configuration file information."
+sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName/g;s/YOUR_STORE_NAME/$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
+createdUsername=`grep -i '"Username":' setupB2b/tmpBuyerUserDef.json|cut -d "\"" -f 4`
 
-# The code below definitely works, but I prefere define the name with the store name
-# buyerusername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
-buyerusername="buyer $storename"
-# buyerusername = "'.'${buyerusername}"
-echo "buyerusername >>>>>>>>>> " $buyerusername
+echo "Creating the user, contact and account"
+sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
 
-# Get most recently created account with Account Store Name suffix
-# Convert Account to Buyer Account
-echo "Making Account a Buyer Account."
-sfdx force:data:record:create -s Account -v "Name='$buyerusername'"
+echo_attention "Assigning the Buyer permission set to the new user $createdUsername"
 
-accountID=`sfdx force:data:soql:query --query \ "SELECT Id FROM Account WHERE Name = '${buyerusername}' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
-sfdx force:data:record:create -s BuyerAccount -v "BuyerId='$accountID' Name='$buyerusername' isActive=true"
+# sfdx force:user:permset:assign --permsetname <permset_name> --targetusername <admin-user> --onbehalfof <non-admin-user>
+sfdx force:user:permset:assign --permsetname B2BBuyer --targetusername  $userName --onbehalfof $createdUsername
+
+# Update the user information to something more friendly
+sfdx force:data:record:update -s User -w "Username='$createdUsername'" -v "FirstName='User ${scratchOrgName}'" 
+
+echo "Getting the contactId"
+contactId=`sfdx force:data:soql:query --query \ "SELECT ContactId FROM User WHERE Username = '${createdUsername}' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
+
+echo_attention "Updating the contact information to the createdUsername $createdUsername ContactId $contactId"
+
+# Update the contact information to something more friendly
+sfdx force:data:record:update -s Contact -w "Id='$contactId'" -v "FirstName='Contact $scratchOrgName' LastName='$storename' Title='Mr.'" 
+
+echo "Selecting Account ID."
+accountID=`sfdx force:data:soql:query --query \ "SELECT AccountId FROM Contact WHERE Id='$contactId' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
+
+echo_attention "ContactId $contactId related with AccountId $accountID "
+
+# Update the account information to something more friendly
+sfdx force:data:record:update -s Account -w "Id='$accountID'" -v "Name='Account ${scratchOrgName} ${storename}'" 
+
+
+buyerAccountName="$storename Buyer Account"
+echo "Buyer account name defined as $buyerAccountName" 
+
+echo "Making the Account a Buyer Account."
+sfdx force:data:record:create -s BuyerAccount -v "BuyerId='$accountID' Name='$buyerAccountName' isActive=true"
 
 # Assign Account to Buyer Group
 echo "Assigning Buyer Account to Buyer Group."
 buyergroupID=`sfdx force:data:soql:query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '${buyergroupName}'" -r csv |tail -n +2`
 sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupID' BuyerId='$accountID'"
-
-
-# Replace the name there and put with the scratch org name
-# sfdx force:user:create -f scripts/json/buyer-user-def.json
-# sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
-# Get the Contact user name
-rm setupB2b/tmpBuyerUserDef.json
-sed -E "s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
-contactUsername=`grep -i '"Username":' setupB2b/tmpBuyerUserDef.json|cut -d "\"" -f 4`
-# Remove this file, because the contact Id was not there yet
-rm setupB2b/tmpBuyerUserDef.json
-sfdx force:data:record:create -s Contact -v "AccountId='$accountID' FirstName='$storename' LastName='$contactUsername'"
-# contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = 'B2B $contactUsername'" -r csv |tail -n +2`
-contactId=`sfdx force:data:soql:query --query \ "SELECT Id FROM Contact WHERE Name = '$storename $contactUsername'" -r csv |tail -n +2`
-
-userAlias=${contactId: -8}
-
-echo_attention "contactUsername $contactUsername ContactId $contactId user alias $userAlias"
-
-sed -E "s/YOUR_ALIAS__CONTACT_ID/$userAlias/g;s/YOUR_SCRATCH_NAME/$scratchOrgName.$storename/g;s/YOUR_CONTACT_ID/$contactId/g" scripts/json/buyer-user-def.json > setupB2b/tmpBuyerUserDef.json
-sfdx force:user:create -f setupB2b/tmpBuyerUserDef.json
-
-echo "Assigning the Buyer permission set."
-# sfdx force:user:permset:assign --permsetname <permset_name> --targetusername <admin-user> --onbehalfof <non-admin-user>
-sfdx force:user:permset:assign --permsetname B2BBuyer --targetusername  $userName --onbehalfof $contactUsername
-
-echo "rm -rf setupB2b"
-
-# # Add the contact
-# contactUserId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$contactUsername'" -r csv |tail -n +2`
-# echo_attention "Creating the contact $contactUsername contactUserId Id $contactUserId"
-
-# sfdx force:data:record:update -s User -w "Id='$contactUserId'" -v "ContactId='$contactId'" 
-
+rm -rf setupB2b
 
 # Add Contact Point Addresses to the buyer account associated with the buyer user.
 # The account will have 2 Shipping and 2 billing addresses associated to it.
@@ -316,7 +307,7 @@ then
 	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='United States' IsDefault='false' Name='Non-Default Shipping' PostalCode='94105' State='California' Street='415 Mission Street (Shipping)'"
 	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Billing' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='United States' IsDefault='false' Name='Non-Default Billing' PostalCode='94105' State='California' Street='415 Mission Street (Billing)'"
 else
-	echo "There is already at least 1 Contact Point Address for your Buyer Account ${buyerusername}"
+	echo "There is already at least 1 Contact Point Address for your Buyer Account ${buyerAccountName}"
 fi
 
 echo "Setup Guest Browsing."
@@ -379,11 +370,3 @@ echo "QUICK START COMPLETE!"
 echo ""
 echo ""
 echo_attention "Finishing the storefront set up and  buyer user creation at $(date)"
-
-# # Now, I get the user name there in the file, to create the user
-# contactUsername=`grep -i '"Username":' scripts/json/buyer-user-def.json|cut -d "\"" -f 4`
-# sfdx force:user:password:generate -o ${contactUsername}
-# echo "Use this buyer user to log in to the store:"
-# sfdx force:user:display -u ${contactUsername}
-
-# echo "NOW WE REALLY ARE DONE!"

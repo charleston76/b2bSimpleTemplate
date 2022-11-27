@@ -57,5 +57,3 @@ returned=`sfdx force:apex:execute -f setupB2b/managedContentCreation.apex`
 echo_attention "Removing the setupB2b folder"
 rm -rf setupB2b
 
-# # I'm still working on it
-# # ./scripts/bash/importProductMedia.sh Shop

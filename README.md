@@ -122,7 +122,7 @@ Nevertheless, that upload doesn't put some pretty images there... for now, to ac
     * ./scripts/bash/importProductMedia.sh [YOUR_SHOP_NAME_HERE]
     * Example:
         ```
-        ./scripts/bash/importProductMedia.sh Shop
+        ./scripts/bash/importProductMedia.sh storeFront
         ```
 
         ![CMS relating products](images/b2bCMSImport5.png)

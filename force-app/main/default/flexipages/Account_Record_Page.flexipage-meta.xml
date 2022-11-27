@@ -34,12 +34,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>force:buyerAccountDetailPanelWrapper</componentName>
-                <identifier>force_buyerAccountDetailPanelWrapper1</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentName>cooper:companyInsightTeaserCard</componentName>
                 <identifier>cooper_companyInsightTeaserCard</identifier>
             </componentInstance>
@@ -224,6 +218,12 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>force:buyerAccountDetailPanelWrapper</componentName>
+                <identifier>force_buyerAccountDetailPanelWrapper</identifier>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>

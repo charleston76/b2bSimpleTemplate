@@ -334,9 +334,10 @@ cd experience-bundle-package/unpackaged/
 
 echo "Removing some options from the networks/$storename.network file"
 # sed -i '' -e '/<meta>/,/<\/meta>/d' my-file.xml
-sed -i -e "s/<enableApexCDNCaching>true<\/enableApexCDNCaching>//g" networks/$storename.network
-sed -i -e "s/<enableImageOptimizationCDN>true<\/enableImageOptimizationCDN>//g" networks/$storename.network
-sed -i -e "s/<enableImageOptimizationCDN>false<\/enableImageOptimizationCDN>//g" networks/$storename.network
+# Since it is suposed to work in the api 56.0, this commands are not needed anymore
+# sed -i -e "s/<enableApexCDNCaching>true<\/enableApexCDNCaching>//g" networks/$storename.network
+# sed -i -e "s/<enableImageOptimizationCDN>true<\/enableImageOptimizationCDN>//g" networks/$storename.network
+# sed -i -e "s/<enableImageOptimizationCDN>false<\/enableImageOptimizationCDN>//g" networks/$storename.network
 
 cp -f ../../manifest/package-deploy-template.xml package.xml
 zip -r -X ../"$communityExperienceBundleName"ToDeploy.zip *
@@ -347,9 +348,6 @@ cd ../..
 
 echo "Deploy the new zip including the flow, ignoring warnings, then clean-up."
 sfdx force:mdapi:deploy -g -f experience-bundle-package/"$communityExperienceBundleName"ToDeploy.zip --wait -1 --verbose --singlepackage
-
-echo_attention "Removing this folder and the package to try understand and fix this issues"
-rm -fr experience-bundle-package
 
 echo "Removing the package xml files used for retrieving and deploying metadata at this step."
 rm package-retrieve.xml

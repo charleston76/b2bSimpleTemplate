@@ -141,9 +141,12 @@
         <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
+        <label>Custom Links</label>
+        <layoutColumns/>
+        <layoutColumns/>
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
@@ -339,11 +342,10 @@
         </relatedContentItems>
     </relatedContent>
     <relatedLists>
-        <fields>Name</fields>
-        <fields>ManagedBy</fields>
-        <fields>Target</fields>
-        <fields>Access</fields>
-        <relatedList>DelegatedAccounts</relatedList>
+        <fields>BuyerGroup</fields>
+        <fields>BUYER_GROUP_DESCRIPTION</fields>
+        <fields>BUYER_GROUP_OWNER</fields>
+        <relatedList>BuyerGroups</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>FULL_NAME</fields>
@@ -351,6 +353,13 @@
         <fields>CORE.USERS.TITLE</fields>
         <fields>CORE.USERS.ACTIVE</fields>
         <relatedList>CommunityMembers</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>FULL_NAME</fields>
+        <fields>CONTACT.TITLE</fields>
+        <fields>CONTACT.EMAIL</fields>
+        <fields>CONTACT.PHONE1</fields>
+        <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>Name</fields>
@@ -362,13 +371,6 @@
         <fields>ADDRESS.ZIP</fields>
         <fields>ADDRESS.COUNTRY</fields>
         <relatedList>ContactPointAddresses</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>FULL_NAME</fields>
-        <fields>CONTACT.TITLE</fields>
-        <fields>CONTACT.EMAIL</fields>
-        <fields>CONTACT.PHONE1</fields>
-        <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>OPPORTUNITY.NAME</fields>
@@ -424,7 +426,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h8b00000e8S8i</masterLabel>
+        <masterLabel>00hP0000005CoWl</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

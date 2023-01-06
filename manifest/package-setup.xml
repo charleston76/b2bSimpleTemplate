@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>ProductAttribute.Decaffeinated__c</members>
+		<members>ProductAttribute.Intensity__c</members>
+		<members>ProductAttribute.Origin__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+        <members>Product2</members>
+		<name>CustomObject</name>
+	</types>
+    <types>
+        <members>Product2-Product Layout</members>
+        <members>ProductAttribute-B2B Product Attribute</members>
+        <name>Layout</name>
+    </types>
+    <version>56.0</version>
+</Package>

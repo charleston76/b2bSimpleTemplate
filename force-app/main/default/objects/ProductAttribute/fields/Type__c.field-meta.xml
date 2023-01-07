@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Origin__c</fullName>
+    <fullName>Type__c</fullName>
     <externalId>false</externalId>
-    <label>Origin</label>
+    <label>Type</label>
     <required>false</required>
     <type>Picklist</type>
     <valueSet>
@@ -10,29 +10,24 @@
         <valueSetDefinition>
             <sorted>true</sorted>
             <value>
-                <fullName>Brazil</fullName>
+                <fullName>Ground</fullName>
                 <default>false</default>
-                <label>Brazil</label>
+                <label>Ground</label>
             </value>
             <value>
-                <fullName>Colombia</fullName>
+                <fullName>Pods</fullName>
                 <default>false</default>
-                <label>Colombia</label>
+                <label>Pods</label>
             </value>
             <value>
-                <fullName>Costa Rica</fullName>
+                <fullName>Ready to Drink</fullName>
                 <default>false</default>
-                <label>Costa Rica</label>
+                <label>Ready to Drink</label>
             </value>
             <value>
-                <fullName>Italy</fullName>
+                <fullName>Whole Bean</fullName>
                 <default>false</default>
-                <label>Italy</label>
-            </value>
-            <value>
-                <fullName>Tanzania</fullName>
-                <default>false</default>
-                <label>Tanzania</label>
+                <label>Whole Bean</label>
             </value>
         </valueSetDefinition>
     </valueSet>

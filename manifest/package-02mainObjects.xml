@@ -6,9 +6,18 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>imgBox</members>
         <members>imagelocation1</members>
         <members>Images</members>
         <name>CspTrustedSite</name>
+    </types>
+    <types>
+        <members>ProductAttribute.Blend__c</members>
+        <members>ProductAttribute.Decaffeinated__c</members>
+        <members>ProductAttribute.Intensity__c</members>
+        <members>ProductAttribute.Origin__c</members>
+        <members>ProductAttribute.Type__c</members>
+        <name>CustomField</name>
     </types>
     <types>
         <members>Account</members>
@@ -45,6 +54,7 @@
         <members>Order-Order Layout</members>
         <members>OrderSummary-Order Summary Layout</members>
         <members>Product2-Product Layout</members>
+        <members>ProductAttribute-B2B Product Attribute</members>
         <name>Layout</name>
     </types>
     <types>
@@ -88,5 +98,5 @@
         <members>menusManager</members>
         <name>StaticResource</name>
     </types>
-    <version>55.0</version>
+    <version>56.0</version>
 </Package>

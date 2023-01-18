@@ -14,17 +14,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef36"
-            },
-            "IsActive": true,
-            "UnitPrice": 39.99,
-            "Product2Id": "@Product2Ref18",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef37"
             },
             "IsActive": true,
@@ -42,17 +31,6 @@
             "UnitPrice": 14.99,
             "Product2Id": "@Product2Ref19",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef39"
-            },
-            "IsActive": true,
-            "UnitPrice": 16.99,
-            "Product2Id": "@Product2Ref19",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -80,17 +58,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef42"
-            },
-            "IsActive": true,
-            "UnitPrice": 17.95,
-            "Product2Id": "@Product2Ref20",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef43"
             },
             "IsActive": true,
@@ -108,17 +75,6 @@
             "UnitPrice": 249,
             "Product2Id": "@Product2Ref21",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef45"
-            },
-            "IsActive": true,
-            "UnitPrice": 229,
-            "Product2Id": "@Product2Ref21",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -146,17 +102,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef48"
-            },
-            "IsActive": true,
-            "UnitPrice": 554,
-            "Product2Id": "@Product2Ref22",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef49"
             },
             "IsActive": true,
@@ -174,17 +119,6 @@
             "UnitPrice": 699,
             "Product2Id": "@Product2Ref23",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef51"
-            },
-            "IsActive": true,
-            "UnitPrice": 799,
-            "Product2Id": "@Product2Ref23",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -212,17 +146,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef54"
-            },
-            "IsActive": true,
-            "UnitPrice": 1849,
-            "Product2Id": "@Product2Ref24",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef55"
             },
             "IsActive": true,
@@ -240,17 +163,6 @@
             "UnitPrice": 595,
             "Product2Id": "@Product2Ref25",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef57"
-            },
-            "IsActive": true,
-            "UnitPrice": 829,
-            "Product2Id": "@Product2Ref25",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -278,17 +190,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef60"
-            },
-            "IsActive": true,
-            "UnitPrice": 23,
-            "Product2Id": "@Product2Ref26",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef61"
             },
             "IsActive": true,
@@ -306,17 +207,6 @@
             "UnitPrice": 15,
             "Product2Id": "@Product2Ref27",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef63"
-            },
-            "IsActive": true,
-            "UnitPrice": 15,
-            "Product2Id": "@Product2Ref27",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -344,17 +234,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef66"
-            },
-            "IsActive": true,
-            "UnitPrice": 50,
-            "Product2Id": "@Product2Ref28",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef67"
             },
             "IsActive": true,
@@ -372,17 +251,6 @@
             "UnitPrice": 45.5,
             "Product2Id": "@Product2Ref29",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef69"
-            },
-            "IsActive": true,
-            "UnitPrice": 45.99,
-            "Product2Id": "@Product2Ref29",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -410,17 +278,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef72"
-            },
-            "IsActive": true,
-            "UnitPrice": 799.99,
-            "Product2Id": "@Product2Ref30",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef73"
             },
             "IsActive": true,
@@ -438,17 +295,6 @@
             "UnitPrice": 3489,
             "Product2Id": "@Product2Ref31",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef75"
-            },
-            "IsActive": true,
-            "UnitPrice": 5950,
-            "Product2Id": "@Product2Ref31",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -476,17 +322,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef78"
-            },
-            "IsActive": true,
-            "UnitPrice": 1350,
-            "Product2Id": "@Product2Ref32",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef79"
             },
             "IsActive": true,
@@ -504,17 +339,6 @@
             "UnitPrice": 319.95,
             "Product2Id": "@Product2Ref33",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef81"
-            },
-            "IsActive": true,
-            "UnitPrice": 579.99,
-            "Product2Id": "@Product2Ref33",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -542,17 +366,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef84"
-            },
-            "IsActive": true,
-            "UnitPrice": 1041,
-            "Product2Id": "@Product2Ref34",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef85"
             },
             "IsActive": true,
@@ -570,17 +383,6 @@
             "UnitPrice": 80,
             "Product2Id": "@Product2Ref35",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef87"
-            },
-            "IsActive": true,
-            "UnitPrice": 99,
-            "Product2Id": "@Product2Ref35",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -608,17 +410,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef90"
-            },
-            "IsActive": true,
-            "UnitPrice": 4.5,
-            "Product2Id": "@Product2Ref36",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef91"
             },
             "IsActive": true,
@@ -636,17 +427,6 @@
             "UnitPrice": 18.99,
             "Product2Id": "@Product2Ref37",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef93"
-            },
-            "IsActive": true,
-            "UnitPrice": 19.97,
-            "Product2Id": "@Product2Ref37",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -674,17 +454,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef96"
-            },
-            "IsActive": true,
-            "UnitPrice": 1696,
-            "Product2Id": "@Product2Ref38",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef97"
             },
             "IsActive": true,
@@ -702,17 +471,6 @@
             "UnitPrice": 799.95,
             "Product2Id": "@Product2Ref39",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef99"
-            },
-            "IsActive": true,
-            "UnitPrice": 849.95,
-            "Product2Id": "@Product2Ref39",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -740,17 +498,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef102"
-            },
-            "IsActive": true,
-            "UnitPrice": 129.99,
-            "Product2Id": "@Product2Ref40",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef103"
             },
             "IsActive": true,
@@ -768,17 +515,6 @@
             "UnitPrice": 19.99,
             "Product2Id": "@Product2Ref41",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef105"
-            },
-            "IsActive": true,
-            "UnitPrice": 20,
-            "Product2Id": "@Product2Ref41",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -806,17 +542,6 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef108"
-            },
-            "IsActive": true,
-            "UnitPrice": 15.25,
-            "Product2Id": "@Product2Ref42",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef109"
             },
             "IsActive": true,
@@ -834,17 +559,6 @@
             "UnitPrice": 14.9,
             "Product2Id": "@Product2Ref43",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef111"
-            },
-            "IsActive": true,
-            "UnitPrice": 16.99,
-            "Product2Id": "@Product2Ref43",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -883,34 +597,12 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef115"
-            },
-            "IsActive": true,
-            "UnitPrice": 38.99,
-            "Product2Id": "@Product2Ref44",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef116"
             },
             "IsActive": true,
             "UnitPrice": 575,
             "Product2Id": "@Product2Ref45",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef117"
-            },
-            "IsActive": true,
-            "UnitPrice": 599,
-            "Product2Id": "@Product2Ref45",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {
@@ -949,34 +641,12 @@
         {
             "attributes": {
                 "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef121"
-            },
-            "IsActive": true,
-            "UnitPrice": 4.99,
-            "Product2Id": "@Product2Ref46",
-            "Pricebook2Id": "@Pricebook2Ref3",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
                 "referenceId": "PricebookEntryRef122"
             },
             "IsActive": true,
             "UnitPrice": 80,
             "Product2Id": "@Product2Ref47",
             "Pricebook2Id": "PutStandardPricebookHere",
-            "UseStandardPrice": false
-        },
-        {
-            "attributes": {
-                "type": "PricebookEntry",
-                "referenceId": "PricebookEntryRef123"
-            },
-            "IsActive": true,
-            "UnitPrice": 99.99,
-            "Product2Id": "@Product2Ref47",
-            "Pricebook2Id": "@Pricebook2Ref3",
             "UseStandardPrice": false
         },
         {

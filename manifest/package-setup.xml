@@ -2,11 +2,39 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>B2BDeliverySample</members>
+		<members>GetDesiredDeliveryDate</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Advanced_Checkout</members>
+		<members>Advanced_Checkout_Summary</members>
+        <name>Flow</name>
     </types>
 	<types>
 		<members>Account-Account Layout</members>
+		<members>Order-Order Layout</members>
 		<name>Layout</name>
 	</types>
+	<types>
+		<members>desiredDeliveryDate</members>
+		<members>orderDeliveryDate</members>
+		<name>LightningComponentBundle</name>
+	</types>
+    <types>
+        <members>Buyer Profile</members>
+        <members>Commerce Business User Profile</members>
+        <name>Profile</name>
+    </types>
 	<version>56.0</version>
 </Package>
+
+<!--
+	Configure that in the checkout page
+		Advanced Checkout
+	You need to add  in the Order Confirmation Page
+		orderDeliveryDate
+
+	This class needs to be configured to the profiles 
+		done - GetDesiredDeliveryDate.cls
+
+-->

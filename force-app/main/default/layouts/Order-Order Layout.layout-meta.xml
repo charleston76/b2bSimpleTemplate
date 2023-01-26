@@ -112,6 +112,25 @@
         <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>false</editHeading>
+        <label>Custom Links</label>
+        <layoutColumns/>
+        <layoutColumns/>
+        <layoutColumns/>
+        <style>CustomLinks</style>
+    </layoutSections>
+    <relatedLists>
+        <fields>Name</fields>
+        <fields>Description</fields>
+        <fields>EmailAddress</fields>
+        <fields>PhoneNumber</fields>
+        <fields>TotalTaxAmount</fields>
+        <fields>TotalAmount</fields>
+        <relatedList>OrderDeliveryGroups</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>Product2</fields>
         <fields>ProductCode</fields>

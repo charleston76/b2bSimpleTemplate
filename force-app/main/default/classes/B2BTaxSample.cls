@@ -15,6 +15,8 @@ global with sharing class B2BTaxSample implements sfdc_checkout.CartTaxCalculati
             // Get all SKUs, the cart item IDs, and the total prices from the cart items.
             Map<String, Id> cartItemIdsBySKU = new Map<String, Id>();
             Map<String, Decimal> cartItemTotalPriceBySKU = new Map<String, Decimal>();
+            // By now, as default behavior, this Type field just have two values:
+            // Product and Charge
             for (CartItem cartItem : [SELECT Sku, TotalPrice, Type FROM CartItem WHERE CartId = :cartId WITH SECURITY_ENFORCED]) {
                 String cartItemSKU = '';
                 if (cartItem.Type == 'Product') {
@@ -28,8 +30,7 @@ global with sharing class B2BTaxSample implements sfdc_checkout.CartTaxCalculati
                         );
                     }
                     cartItemSKU = cartItem.Sku;
-                }
-                else if (cartItem.Type == 'Charge') {
+                } else if (cartItem.Type == 'Charge') {
                     // This is an example for a Cart Item of type shipping charge.
                     // For simplicity and testing purposes, we just assign some SKU to this charge so that the taxation external service returns some value.
                     cartItemSKU = 'ChargeSKU';

@@ -3,6 +3,7 @@
     <types>
         <members>B2BDeliverySample</members>
 		<members>CancelOrder</members>
+		<members>ContactController</members>
 		<members>GetDesiredDeliveryDate</members>
         <name>ApexClass</name>
     </types>
@@ -15,7 +16,8 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Order_Record_Page</members>
+		<members>Account_Record_Page</members>
+        <members>Order_Record_Page</members-->
         <name>FlexiPage</name>
     </types>
     <types>
@@ -36,7 +38,9 @@
 		<members>cartContents</members>
 		<members>cartItems</members>
 		<members>cancelOrder</members>
+		<members>contactListItem</members>
 		<members>desiredDeliveryDate</members>
+		<members>eventWithData</members>
 		<members>orderDeliveryDate</members>
 		<members>productDetails</members>
 		<members>productDetailsDisplay</members>
@@ -52,6 +56,10 @@
 		<members>OrderSummary.Cancel_Order</members>
 		<name>QuickAction</name>
 	</types>
+    <types>
+        <members>EmployeePhotos</members>
+        <name>StaticResource</name>
+    </types>
 	<version>56.0</version>
 </Package>
 <!--
@@ -70,7 +78,7 @@
 	Activity: Cross-component Communication - Child to Parent
 		Add the productDetails.htm into the cart product page
 	Activity: Cross-Component Communication - Parent to Child
-		
 
-	
+	Activity: Cross-Component Communication - Advanced Events with Data
+		Flexipage updated, need check the default org definition	
 -->

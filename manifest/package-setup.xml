@@ -11,9 +11,18 @@
 		<name>CustomField</name>
 	</types>
     <types>
+        <members>Checkout_Intermediate_Notification__e</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Order_Record_Page</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
         <members>Advanced_Checkout</members>
 		<members>Advanced_Checkout_Summary</members>
 		<members>Cancel_Order_Summary</members>
+		<members>Publish_Event_On_Checkout_Intermediate_Operation_Process</members>
         <name>Flow</name>
     </types>
 	<types>
@@ -23,6 +32,7 @@
 		<name>Layout</name>
 	</types>
 	<types>
+		<members>cartActivity</members>
 		<members>cancelOrder</members>
 		<members>desiredDeliveryDate</members>
 		<members>orderDeliveryDate</members>
@@ -41,10 +51,8 @@
 	<version>56.0</version>
 </Package>
 <!--
-
-quick action
-	
-
+	The process builder trigger an platform event... but
+	that doesn't worked in the scratch org... I need to confirm on developer org
 
 	Configure that in the checkout page
 		Advanced Checkout
@@ -52,7 +60,4 @@ quick action
 		orderDeliveryDate
 
 	This class needs to be configured to the profiles 
-		done - GetDesiredDeliveryDate.cls
-		CancelOrder
-
 -->

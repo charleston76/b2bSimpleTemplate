@@ -12,7 +12,7 @@
     </applicationVisibilities>
     <classAccesses>
         <apexClass>B2BAuthorizeTokenizedPayment</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BAuthorizeTokenizedPaymentTest</apexClass>
@@ -20,15 +20,15 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BCartControllerSample</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BCartToOrderDraft</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BCheckInventorySample</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BCheckInventorySampleTest</apexClass>
@@ -36,7 +36,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BDeliverySample</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BDeliverySampleTest</apexClass>
@@ -44,7 +44,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BGetInfo</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BPaymentController</apexClass>
@@ -56,7 +56,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BPricingSample</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BPricingSampleTest</apexClass>
@@ -64,11 +64,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BSearchControllerSample</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BSyncCheckInventory</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BSyncCheckInventoryTest</apexClass>
@@ -76,7 +76,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BSyncDelivery</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BSyncDeliveryTest</apexClass>
@@ -84,7 +84,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BSyncPricing</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BSyncPricingTest</apexClass>
@@ -92,7 +92,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BSyncTax</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BSyncTaxTest</apexClass>
@@ -100,7 +100,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BTaxSample</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BTaxSampleTest</apexClass>
@@ -108,7 +108,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BUtils</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CancelOrder</apexClass>
@@ -116,7 +116,7 @@
     </classAccesses>    
     <classAccesses>
         <apexClass>ChangePasswordController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ChangePasswordControllerTest</apexClass>

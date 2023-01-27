@@ -1,4 +1,4 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, wire, api, track } from 'lwc';
 
 import communityId from '@salesforce/community/Id';
 import getProduct from '@salesforce/apex/B2BGetInfo.getProduct';
@@ -15,6 +15,39 @@ import { resolve } from 'c/cmsResourceResolver';
  * This outer component layer handles data retrieval and management, as well as projection for internal display components.
  */
 export default class ProductDetails extends LightningElement {
+    @track _availableColors = [];
+    
+    constructor() {
+        super();
+        this.template.addEventListener(
+        'coloravailability', this.handleColorAvailability);
+   }
+
+//    handleColorAvailability = () => {alert('color event wired')};
+    /**
+     * Responds to the 'coloravailability' event being raised by child (see constructor)
+     */
+   handleColorAvailability = () => {
+        console.log('productDetails handleColorAvailability');
+       // All colors for this item
+       let colors = ["Red", "Green", "Blue", "Silver", "Black", "Purple", "Orange"];
+       // Clear the array
+       this._availableColors = [];
+       // Get a random result for each color pushing into the array
+       colors.forEach(item => this.getRandomAvailability(item, this._availableColors));
+   };
+
+    /**
+     * Utility method to simulate a call to an availability service and get random results
+     * @param {string} colorName
+     * @param {Array} colorsAvailable
+     */
+    getRandomAvailability(colorName, colorsAvailable){
+        let result = Math.floor(Math.random() * 100);
+        let available = result > 50 ? "Yes" : "No";
+        colorsAvailable.push({color: colorName, available: available, style: "background-color:" + colorName.toLowerCase() });
+    }
+
     /**
      * Gets the effective account - if any - of the user viewing the product.
      *

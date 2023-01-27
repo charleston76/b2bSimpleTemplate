@@ -33,9 +33,13 @@
 	</types>
 	<types>
 		<members>cartActivity</members>
+		<members>cartContents</members>
+		<members>cartItems</members>
 		<members>cancelOrder</members>
 		<members>desiredDeliveryDate</members>
 		<members>orderDeliveryDate</members>
+		<members>productDetails</members>
+		<members>productDetailsDisplay</members>
 		<name>LightningComponentBundle</name>
 	</types>
     <types>
@@ -51,13 +55,22 @@
 	<version>56.0</version>
 </Package>
 <!--
-	The process builder trigger an platform event... but
-	that doesn't worked in the scratch org... I need to confirm on developer org
+	Activity: Create Cancel Order Action for Order Summary Detail
+		Configure that in the checkout page
+			Advanced Checkout
+		You need to add  in the Order Confirmation Page
+			orderDeliveryDate
 
-	Configure that in the checkout page
-		Advanced Checkout
-	You need to add  in the Order Confirmation Page
-		orderDeliveryDate
+	Activity: Subscribe to Platform Events Using Lightning Web Components (not worked on scratch org)
+		The process builder trigger an platform event... but
+		that doesn't worked in the scratch org... I need to confirm on developer org
+	Activity: Create Custom Product Detail Display Using Lightning Web Components
+		You need to add the 
+			Product Detail page
+	Activity: Cross-component Communication - Child to Parent
+		Add the productDetails.htm into the cart product page
+	Activity: Cross-Component Communication - Parent to Child
+		
 
-	This class needs to be configured to the profiles 
+	
 -->

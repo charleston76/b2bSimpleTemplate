@@ -34,6 +34,11 @@
                             ></lightning-formatted-rich-text>
                         </div>
                     </template>
+                    <br />
+                    <lightning-button label="Check Color Availability" title="Non-primary action"
+                                onclick={colorAvailabilityHandler}
+                                class="slds-m-left_x-small">
+                    </lightning-button>
                 </div>
                 <div if:true={inStock} class="slds-p-bottom_small">
                     <lightning-icon

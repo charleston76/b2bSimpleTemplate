@@ -7,19 +7,38 @@
         variant="brand"
     >
     </lightning-spinner>
-    <c-product-details-display
-        if:true={hasProduct}
-        cart-locked={_isCartLocked}
-        category-path={displayableProduct.categoryPath}
-        custom-fields={displayableProduct.customFields}
-        description={displayableProduct.description}
-        image={displayableProduct.image}
-        in-stock={displayableProduct.inStock}
-        name={displayableProduct.name}
-        price={displayableProduct.price}
-        sku={displayableProduct.sku}
-        onaddtocart={addToCart}
-        oncreateandaddtolist={createAndAddToList}
-    >
-    </c-product-details-display>
+    <lightning-layout horizontal-align="center">
+        <lightning-layout-item>
+
+            <c-product-details-display
+                if:true={hasProduct}
+                cart-locked={_isCartLocked}
+                category-path={displayableProduct.categoryPath}
+                custom-fields={displayableProduct.customFields}
+                description={displayableProduct.description}
+                image={displayableProduct.image}
+                in-stock={displayableProduct.inStock}
+                name={displayableProduct.name}
+                price={displayableProduct.price}
+                sku={displayableProduct.sku}
+                onaddtocart={addToCart}
+                oncreateandaddtolist={createAndAddToList}
+                oncoloravailability={handleColorAvailability}
+            >
+            </c-product-details-display>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <template for:each={_availableColors} for:item="item">
+                <div align="left"
+                    key={item.color}
+                    if:true={item.color}
+                >
+                    <span key={item.color} style={item.style}>&nbsp;&nbsp;&nbsp;</span>
+                    <span>{item.color}:</span>
+                    <span>&nbsp;{item.available}</span>
+                </div>
+            </template>
+        </lightning-layout-item>
+    </lightning-layout>
+
 </template>

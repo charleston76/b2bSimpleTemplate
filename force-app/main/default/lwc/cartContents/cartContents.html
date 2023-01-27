@@ -21,6 +21,7 @@
             onquantitychanged={handleQuantityChanged}
             onsinglecartitemdelete={handleCartItemDelete}
             is-cart-disabled={isCartDisabled}
+            stimated-arrival-dates={_estimatedArrivalDates}
         >
         </c-cart-items>
         <lightning-spinner
@@ -50,6 +51,15 @@
                 onclick={handleClearCartButtonClicked}
             >
             </lightning-button>
+            <template if:false={isCartEmpty}>
+                &nbsp;|&nbsp;
+                <lightning-button label="Check Arrival Dates"
+                    title="Check Arrival Dates"
+                    class="footer-action"
+                    variant="base"
+                    onclick={checkArrivalDates} >
+                </lightning-button>
+            </template>
         </footer>
     </template>
 

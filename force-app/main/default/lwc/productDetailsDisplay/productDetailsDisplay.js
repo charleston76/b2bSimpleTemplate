@@ -300,10 +300,30 @@ export default class ProductDetailsDisplay extends NavigationMixin(
      * @private
      */
     get _displayableFields() {
-        // Enhance the fields with a synthetic ID for iteration.
-        return (this.customFields || []).map((field, index) => ({
+        // // Enhance the fields with a synthetic ID for iteration.
+        // return (this.customFields || []).map((field, index) => ({
+        //     ...field,
+        //     id: index
+        // }));
+        //Copy the array and remove "__c" suffixes in the display
+        function stripCustomSuffix(item, newArray){
+            newArray.push(
+                {
+                    name: item.name.replace('__c',''),
+                    value:item.value
+                }
+            );
+        }
+        let tempArray = [];
+        this.customFields.forEach(item => stripCustomSuffix(item, tempArray));
+        return (tempArray).map((field, index) => ({
             ...field,
             id: index
         }));
     }
+    
+    colorAvailabilityHandler() {
+        this.dispatchEvent(new CustomEvent('coloravailability',
+        { bubbles: true }));
+    }    
 }

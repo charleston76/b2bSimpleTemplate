@@ -1,4 +1,4 @@
-import { api, wire, LightningElement } from 'lwc';
+import { api, wire, LightningElement, track } from 'lwc';
 import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 
 import communityId from '@salesforce/community/Id';
@@ -523,4 +523,24 @@ export default class CartContents extends NavigationMixin(LightningElement) {
         // Update the cart badge and notify any components interested with this change
         this.handleCartUpdate();
     }
+
+    @track _estimatedArrivalDates;
+
+    getRandomEstimatedArrival(cartItem, estimatedArrivalDates) {
+        console.log('cartContents getRandomEstimatedArrival');
+        let estimatedArrivalDays = Math.floor(Math.random() * 8) + 1;
+        this._estimatedArrivalDates.push({cartItemId: cartItem.cartItem.cartItemId, estimatedArrival: estimatedArrivalDays + " days"});
+    }
+    
+    /**
+    * Respond to the user button click and push data to the child component about the
+    * estimated arrival dates for each of the items
+    */
+    checkArrivalDates(){
+        // Emulate a service call and pass some data down in a map for the child
+        // component (cartItems.html + js) to display
+        console.log('cartContents checkArrivalDates');
+        this._estimatedArrivalDates = [];
+        (this.cartItems || []).forEach(cartitem => this.getRandomEstimatedArrival(cartitem, this._estimatedArrivalDates));
+    }    
 }

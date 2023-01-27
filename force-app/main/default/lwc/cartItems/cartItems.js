@@ -358,4 +358,34 @@ export default class Items extends NavigationMixin(LightningElement) {
     */
         clickEvent.target.focus();
     }
+
+    /**
+    * New code for the estimatedArrivalDates
+    * @type {Map}
+    */
+    _estimatedArrivalDates;
+    @api
+    get estimatedArrivalDates() {
+        console.log('cartItem estimatedArrivalDates this._estimatedArrivalDates', this._estimatedArrivalDates)
+        return this._estimatedArrivalDates;
+    }
+
+    set estimatedArrivalDates(items) {
+        console.log('cartItem estimatedArrivalDates items', items)
+        this._estimatedArrivalDates = items;
+        this.openModal = (this._estimatedArrivalDates || []).length > 0;
+    }    
+    /**
+    * New code for the estimatedArrivalDates
+    * @type {Map}
+    */
+    openModal = false;
+
+    showModal() {
+        this.openModal = true;
+    }
+
+    closeModal() {
+        this.openModal = false;
+    }
 }

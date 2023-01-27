@@ -116,4 +116,33 @@
             </li>
         </template>
     </ul>
+    <!-- Estimated Arrival Date -->
+    <template if:true={openModal}>
+        <div class="slds-modal slds-fade-in-open slds-backdrop">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"
+                    variant="bare-inverse" onclick={closeModal} class="slds-modal__close">
+                </lightning-button-icon>
+                </div>
+                <!-- body -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    Estimated arrivals are shown below:
+                    <ul>
+                        <template for:each={estimatedArrivalDates} for:item="item">
+                            <li
+                                key={item.cartItemId}
+                                if:true={item.estimatedArrival}>
+                                    CartItemId {item.cartItemId} has an estimated arrival of: {item.estimatedArrival}
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+                <div class="slds-modal__footer">
+                <lightning-button icon-name="utility:close" label="close" variant="brand" onclick={closeModal}>
+                </lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
 </template>

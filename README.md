@@ -135,7 +135,26 @@ Nevertheless, that upload doesn't put some pretty images there... for now, to ac
 
     ![Rebuild Index](images/b2bCMSImport7.png)
 
-### Scratch org configuration
+## Out of the Box CSV Importing Products and CMS images
+
+I think that this part, is really, cool!
+
+I mean, out of the box functionalities are always recommended, because those can be done by an administrator!
+
+In this one, we'll use this official salesforce guidance, we are expecting that you take a look there also:
+* [The salesforce Import Commerce Data](https://help.salesforce.com/s/articleView?id=sf.comm_data_import.htm&type=5) ;
+
+But if you don't have this time now, don't worry, take a look in the demo, in my youtube channel:
+
+[![B2B2C Commerce (Out of the box) Products and CMS images uploading](images/productImportationYouTube.png)](https://youtu.be/pzHeM1pZTsY)
+
+
+There we have the same contenct in **English**, **Portuguese** and **Spanish**!
+
+Take a look, watch the demo and use our [CSV sample file](scripts/csv/b2bSimpleCommerceImport.csv).
+
+
+## Scratch org configuration
 
 
 To work with Scratch orgs, we supposed that, you need to to the steps below:
@@ -160,12 +179,12 @@ To work with Scratch orgs, we supposed that, you need to to the steps below:
     ./scripts/bash/createDigitalExpSetupStore.sh tmpB2B storeFront
     ```
 
-### Other org types
+## Other org types
 
 Well, as I told before, we still working on that... 
 Coming soon new updates, stay tuned
 
-### All Organizations
+## All Organizations
 
 * #### Authorize the organization
     * You can do that pressing the "ctrl + shift + p" keys in VSCode, or;

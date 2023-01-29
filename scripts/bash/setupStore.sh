@@ -187,7 +187,7 @@ checkoutMetaFile=$checkoutMetaFolder$greppedFile
 tmpfile=$(mktemp)
 # This determines the name of the main flow as it will always be the only flow to terminate in "Checkout.flow"
 mainFlowName=`ls force-app/main/default/flows/*Checkout.flow-meta.xml | sed 's/.*flows\/\(.*\).flow-meta.xml/\1/'`
-
+echo "Main Flow Name File is: " $mainFlowName
 # This will make this the selected checkout flow in the store
 sed "s/sfdc_checkout__CheckoutTemplate/$mainFlowName/g" $checkoutMetaFile > $tmpfile
 mv -f $tmpfile $checkoutMetaFile

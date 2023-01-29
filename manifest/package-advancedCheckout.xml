@@ -7,63 +7,11 @@
 		<members>GetDesiredDeliveryDate</members>
         <name>ApexClass</name>
     </types>
-	<types>
-        <members>CommerceDiagnosticCustomObject__c.B2B_Edition__c</members>
-        <members>CommerceDiagnosticCustomObject__c.B2B_Version__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Browser_Device_Type__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Context_Id_2__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Context_Id__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Context_Map__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Correlation_Id__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Count__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Effective_Account_Id__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Error_Code__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Error_Message__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Event_Created_By__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Event_Created_Date__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Is_Retry__c</members>
-        <members>CommerceDiagnosticCustomObject__c.OS_Version__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Operation_Stage__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Operation_State__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Operation_Status__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Operation_Time__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Operation__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Service_Name__c</members>
-        <members>CommerceDiagnosticCustomObject__c.User__c</members>
-        <members>CommerceDiagnosticCustomObject__c.WebStore_Id__c</members>
-        <members>CommerceDiagnosticCustomObject__c.WebStore_Type__c</members>
-		<members>OrderSummary.Status</members>
-		<name>CustomField</name>
-	</types>
     <types>
-        <members>Checkout_Intermediate_Notification__e</members>
-		<members>CommerceDiagnosticCustomObject__c</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>CommerceDiagnosticCustomObject__c</members>
-        <name>CustomTab</name>
-    </types>
-    <types>
-		<members>Account_Record_Page</members>
-        <members>Order_Record_Page</members>
-        <name>FlexiPage</name>
-    </types>
-    <types>
-        <members>Advanced_Checkout</members>
-		<members>Advanced_Checkout_Summary</members>
-		<members>Cancel_Order_Summary</members>
-		<members>Process_CommerceDiagnosticEvents</members>
-		<members>Publish_Event_On_Checkout_Intermediate_Operation_Process</members>
+        <members>Advanced_Check-Out</members>
+		<members>Advanced_Check-Out_Summary</members>
         <name>Flow</name>
     </types>
-	<types>
-		<members>Account-Account Layout</members>
-		<members>CommerceDiagnosticCustomObject__c-Commerce Diagnostic Custom Object Layout</members>
-		<members>Order-Order Layout</members>
-		<members>OrderSummary-Order Summary Layout</members>
-		<name>Layout</name>
-	</types>
 	<types>
 		<members>cartActivity</members>
 		<members>cartContents</members>
@@ -78,19 +26,11 @@
 		<name>LightningComponentBundle</name>
 	</types>
     <types>
-        <members>CommerceDiagnosticCustomObject__c.CommerceDiagnosticEventFields</members>
-        <name>ListView</name>
-    </types>
-    <types>
 		<members>Admin</members>
         <members>Buyer Profile</members>
         <members>Commerce Business User Profile</members>
         <name>Profile</name>
     </types>
-	<types>
-		<members>OrderSummary.Cancel_Order</members>
-		<name>QuickAction</name>
-	</types>
     <types>
         <members>EmployeePhotos</members>
         <name>StaticResource</name>
@@ -98,6 +38,10 @@
 	<version>56.0</version>
 </Package>
 <!--
+
+	Missing flows:
+		Advanced_Shipping_Subflow
+
 	Activity: Create Cancel Order Action for Order Summary Detail
 		Configure that in the checkout page
 			Advanced Checkout

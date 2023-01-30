@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+        <members>ProductAttribute.Collor__c</members>
+        <members>ProductAttribute.Size__c</members>
+        <members>ProductAttribute.Wearing_Style__c</members>
+        <members>ProductAttribute.Blend__c</members>
+        <members>ProductAttribute.Decaffeinated__c</members>
+        <members>ProductAttribute.Intensity__c</members>
+        <members>ProductAttribute.Origin__c</members>
+        <members>ProductAttribute.Type__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>ProductAttribute-B2B Product Attribute</members>
+        <name>Layout</name>
+    </types>
+    <version>56.0</version>
+</Package>

@@ -83,3 +83,5 @@ for (Product2 rowProd : lstNew){
 system.debug('lstPrdAttToEntry.size() ' + lstPrdAttToEntry.size());
 
 if (lstPrdAttToEntry.size() > 0 ) insert  lstPrdAttToEntry;
+
+// sfdx force:apex:execute -f scripts/apex/parentProductCreation.apex

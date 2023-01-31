@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Type__c</fullName>
+    <fullName>Wearing_Style__c</fullName>
     <externalId>false</externalId>
-    <label>Type</label>
+    <label>Wearing Style</label>
     <required>false</required>
     <type>Picklist</type>
     <valueSet>
@@ -10,24 +10,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Ground</fullName>
+                <fullName>Normal</fullName>
                 <default>false</default>
-                <label>Ground</label>
+                <label>Normal</label>
             </value>
             <value>
-                <fullName>Pods</fullName>
+                <fullName>Serious</fullName>
                 <default>false</default>
-                <label>Pods</label>
+                <label>Serious</label>
             </value>
             <value>
-                <fullName>Ready to Drink</fullName>
+                <fullName>Hilarious</fullName>
                 <default>false</default>
-                <label>Ready to Drink</label>
-            </value>
-            <value>
-                <fullName>Whole Bean</fullName>
-                <default>false</default>
-                <label>Whole Bean</label>
+                <label>Hilarious</label>
             </value>
         </valueSetDefinition>
     </valueSet>

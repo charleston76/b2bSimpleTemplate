@@ -37,6 +37,9 @@
         <members>CommerceDiagnosticCustomObject__c.WebStore_Id__c</members>
         <members>CommerceDiagnosticCustomObject__c.WebStore_Type__c</members>
         <members>OrderSummary.Status</members>
+        <members>ProductAttribute.Color__c</members>
+        <members>ProductAttribute.Size__c</members>
+        <members>ProductAttribute.Wearing_Style__c</members>
         <members>ProductAttribute.Blend__c</members>
         <members>ProductAttribute.Decaffeinated__c</members>
         <members>ProductAttribute.Intensity__c</members>

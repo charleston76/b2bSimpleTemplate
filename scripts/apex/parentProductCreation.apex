@@ -26,10 +26,10 @@ List<Product2> lstDelete = [
     SELECT Id FROM Product2
 ];
 
-// List<ProductAttributeSetItem> delProdAttItem = [
-//     SELECT Id  FROM ProductAttributeSetItem
-//     WHERE ProductAttributeSetId =: attributeSetId
-// ];
+List<ProductAttributeSetItem> delProdAttItem = [
+    SELECT Id  FROM ProductAttributeSetItem
+    WHERE ProductAttributeSetId =: attributeSetId
+];
 
 
 List<ProductAttributeSetProduct> delProdAttSetProd = [
@@ -41,8 +41,8 @@ List<ProductAttributeSetProduct> delProdAttSetProd = [
 
 
 
-// system.debug('delProdAttItem.size() ' + delProdAttItem.size());
-// if (delProdAttItem.size() > 0 ) delete delProdAttItem;
+system.debug('delProdAttItem.size() ' + delProdAttItem.size());
+if (delProdAttItem.size() > 0 ) delete delProdAttItem;
 
 system.debug('delProdAttSetProd.size() ' + delProdAttSetProd.size());
 if (delProdAttSetProd.size() > 0 ) delete delProdAttSetProd;

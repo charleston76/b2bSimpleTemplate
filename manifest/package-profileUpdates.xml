@@ -86,6 +86,7 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
+        <members>storeFront Profile</members>
         <members>Admin</members>
         <members>Buyer Profile</members>
         <members>Commerce Business User Profile</members>

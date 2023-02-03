@@ -33,7 +33,7 @@ storename=$2
 
 echo_attention "Creating the $scratchOrgName scratch org with one day of duration."
 echo_attention "That can take few seconds to a couple minutes, please, be patient."
-sfdx force:org:create -f config/project-scratch-def.json -a $scratchOrgName -d 1
+sfdx force:org:create -f config/project-scratch-def.json -a $scratchOrgName -d 30
 
 echo_attention "Setting the $scratchOrgName as default"
 sfdx force:config:set defaultusername=$scratchOrgName

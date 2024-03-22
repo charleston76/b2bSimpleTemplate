@@ -39,10 +39,10 @@
                 <behavior>Edit</behavior>
                 <field>AnnualRevenue</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
+            <!-- <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>CurrencyIsoCode</field>
-            </layoutItems>
+            </layoutItems> -->
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
